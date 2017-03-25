@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>vibe</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/3.2.0/jquery.min.js"></script>
+    <script src="summer-vibe.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="list-group">
+            <a href="#" class="list-group-item active">
+                <h4 class="list-group-item-heading">获取当前的日期时间 格式“yyyy-MM-dd HH:MM:SS”</h4>
+                <p class="list-group-item-text"></p>
+            </a>
+        </div>
+        <div class="list-group">
+            <a href="#" class="list-group-item active">
+                <h4 class="list-group-item-heading">将数值四舍五入(保留2位小数)后格式化成金额形式</h4>
+                <p class="list-group-item-text"></p>
+            </a>
+        </div>
+        <div class="list-group">
+            <a href="#" class="list-group-item active">
+                <h4 class="list-group-item-heading"></h4>
+                <p class="list-group-item-text"></p>
+            </a>
+        </div>
+    </div>
+    <script type="text/javascript">
+    $(function() {
+        $('.list-group p').eq(0).text(vibe.dateFormat());
+        $('.list-group p').eq(1).text(vibe.formatCurrency('123456 .7 8 9 9 9'));
+    });
+    </script>
+</body>
+
+</html>
