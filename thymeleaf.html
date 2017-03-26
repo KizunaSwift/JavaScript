@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Thymeleaf template</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.bootcss.com/jquery/3.2.0/jquery.min.js"></script>
+    <script src="template-simple.js"></script>
+</head>
+
+<body>
+    <div class="weatherList"></div>
+    <script type="text/html" id="weatherTemplate">
+    	{{each weather}}
+    		<p>{{$value.date}}</p>
+    	{{/each}}
+    </script>
+    <script type="text/javascript">
+    	$.ajax({
+    		type: 'GET',
+    		url: 'http://api.asilu.com/weather/',
+    		data: {
+
+    		},
+    		contentType: 'application/json; charset=utf-8',
+    		dataType: 'jsonp',
+    		success: function(res) {
+    			var html = template.render('weatherTemplate', res);
+    			$('.weatherList').html(html);
+    		},
+    		error: function(res) {
+
+    		}
+    	});
+    </script>
+</body>
+
+</html>
