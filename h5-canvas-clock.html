@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>html5-canvas-clock</title>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="200" height="200"></canvas>
+    <script type="text/javascript">
+    /*
+            注：
+
+            1.stroke()方法绘制当前路径的边框。路径定义的几何线条产生了，但线条的可视化取决于 strokeStyle、lineWidth、lineJoin、lineCap 和 miterLimit 等属性。
+
+            2.save() 方法把当前状态的一份拷贝压入到一个保存图像状态的栈中。这就允许您临时地改变图像状态，然后，通过调用 restore() 来恢复以前的值
+
+            3.translate() 方法为画布的变换矩阵添加水平的和垂直的偏移。参数 dx 和 dy 添加给后续定义路径中的所有点。
+
+            4.scale() 方法为画布的当前变换矩阵添加一个缩放变换。缩放通过独立的水平和垂直缩放因子来完成。例如，传递一个值 2.0 和 0.5 将会导致绘图路径宽度变为原来的两倍，而高度变为原来的 1/2。指定一个负的 sx 值，会导致 X 坐标沿 Y 轴对折，而指定一个负的 sy 会导致 Y 坐标沿着 X 轴对折。
+
+            5.rotate() 方法通过指定一个角度，改变了画布坐标和 Web 浏览器中的 <Canvas> 元素的像素之间的映射，使得任意后续绘图在画布中都显示为旋转的。它并没有旋转 <Canvas> 元素本身。注意，这个角度是用弧度指定的。
+            */
+
+    window.onload = function() {
+        clock();
+        setInterval(clock, 1000); ///每一秒钟重新绘制一次
+    };
+
+    function clock() {
+        ///得到时分秒
+        var now = new Date();
+        var sec = now.getSeconds(),
+            min = now.getMinutes(),
+            hour = now.getHours();
+        hour = hour >= 12 ? hour - 12 : hour;
+        var c = document.getElementById("myCanvas").getContext("2d");
+
+        c.save();
+        c.clearRect(0, 0, 150, 150); ///初始化画布
+        c.translate(75, 75);
+        c.scale(0.4, 0.4);
+        c.rotate(-Math.PI / 2);
+
+        c.strokeStyle = "black";
+        c.fillStyle = "black";
+        c.lineWidth = 8;
+        c.lineCap = "round";
+
+        c.save();
+        c.beginPath();
+        for (var i = 0; i < 12; i++) { ///小时刻度
+            c.rotate(Math.PI / 6);
+            c.moveTo(100, 0);
+            c.lineTo(120, 0);
+        }
+        c.stroke();
+        c.restore();
+        c.save();
+
+        c.lineWidth = 5;
+        c.beginPath();
+        for (var i = 0; i < 60; i++) { ///分钟刻度
+            if (i % 5 !== 0) {
+                c.moveTo(117, 0);
+                c.lineTo(120, 0);
+            }
+            c.rotate(Math.PI / 30);
+        }
+        c.stroke();
+        c.restore();
+        c.save();
+
+        c.rotate((Math.PI / 6) * hour + (Math.PI / 360) * min + (Math.PI / 21600) * sec); ///画上时针
+        c.lineWidth = 14;
+        c.beginPath();
+        c.moveTo(-20, 0);
+        c.lineTo(75, 0);
+        c.stroke();
+        c.restore();
+        c.save();
+
+        c.rotate((Math.PI / 30) * min + (Math.PI / 1800) * sec); ///分针
+        c.strokeStyle = "#29A8DE";
+        c.lineWith = 10;
+        c.beginPath();
+        c.moveTo(-28, 0);
+        c.lineTo(102, 0);
+        c.stroke();
+        c.restore();
+        c.save();
+
+        c.rotate(sec * Math.PI / 30); ///秒针
+        c.strokeStyle = "#D40000";
+        c.lineWidth = 6;
+        c.beginPath();
+        c.moveTo(-30, 0);
+        c.lineTo(83, 0);
+        c.stroke();
+        c.restore();
+        c.save();
+        ///表框      
+        c.lineWidth = 14;
+        c.strokeStyle = "#325FA2";
+        c.beginPath();
+        c.arc(0, 0, 142, 0, Math.PI * 2, true);
+        c.stroke();
+        c.restore();
+        c.restore();
+    }
+    </script>
+</body>
+
+</html>
