@@ -212,10 +212,40 @@ var vibe = {
             success: callBack,
             complete: function(XMLHttpRequest, status) {
                 if (status == 'timeout') { //超时,status还有success,error等值的情况
-                    ajaxRequest.abort();　　　　　
-                    vibe.alert("请求超时");　　　　
+                    ajaxRequest.abort();
+                    vibe.alert("请求超时");
                 }
             }
         });
+    },
+
+    /**
+     * @获取url参数方法
+     * @returns {jsonObj}
+     */
+    getRequestParam: function() {
+        var url = location.search; //获取url中"?"符后的字串
+        var theRequest = {};
+
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1);
+            strs = str.split("&");
+
+            for (var i = 0; i < strs.length; i++) {
+                theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+            }
+        }
+
+        return theRequest;
+    },
+
+    /**
+     * @获取url参数另一种方法
+     */
+    getRequestParam2: function(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r !== null) return unescape(r[2]);
+        return null;
     }
 };
