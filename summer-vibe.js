@@ -1,6 +1,6 @@
 /**
  * lixianwei 2017-03-25
- * 2017-03-26
+ * update 2017-03-27
  */
 var vibe = {
     version: '1.0',
@@ -142,7 +142,7 @@ var vibe = {
     },
 
     /*
-     * 倒计时60s
+     * 闹钟 - 当前时间
      */
     clock: function(id) {
         var Id = '#' + id;
@@ -164,5 +164,58 @@ var vibe = {
         var t = setInterval(function() {
             settime();
         }, 1000);
+    },
+
+    /*
+     * 验证手机号
+     */
+    isMobile: function(str) {
+        var regExp = /^0?1[3|4|5|7|8][0-9]\d{8}$/;
+        return regExp.test(str);
+    },
+
+    /*
+     * 验证邮箱
+     */
+    isEmail: function(str) {
+        var regExp = /^([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
+        return regExp.test(str);
+    },
+
+    /*
+     * 验证身份证
+     */
+    isIDCard: function(str) {
+        var regExp = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+        return regExp.test(str);
+    },
+
+    /*
+     * 禁止输入Emoji表情
+     */
+    isEmoji: function(str) {
+        var regExp = /\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDE4F]/g;
+        return str.match(regExp);
+    },
+
+    /*
+     * ajax
+     */
+    ajaxRequest: function(url, params, callBack) {
+        var ajaxRequest = $.ajax({
+            url: url,
+            timeout: 30000,
+            type: "POST",
+            dataType: "json",
+            contentType: 'application/json',
+            data: params,
+            success: callBack,
+            complete: function(XMLHttpRequest, status) {
+                if (status == 'timeout') { //超时,status还有success,error等值的情况
+                    ajaxRequest.abort();　　　　　
+                    vibe.alert("请求超时");　　　　
+                }
+            }
+        });
     }
 };

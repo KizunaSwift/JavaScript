@@ -7,10 +7,11 @@
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <script src="https://cdn.bootcss.com/jquery/3.2.0/jquery.min.js"></script>
     <script src="summer-vibe.js"></script>
+    <script src="common.js"></script>
 </head>
 
 <body>
-    <div class="container-fluid">
+    <div class="container-fluid" style="padding: 30px 15px;">
         <div class="list-group">
             <a href="#" class="list-group-item active">
                 <h4 class="list-group-item-heading">获取当前的日期时间 格式“yyyy-MM-dd HH:MM:SS”</h4>
@@ -65,6 +66,26 @@
                 <p id="clock" class="list-group-item-text"></p>
             </a>
         </div>
+        <div class="list-group" style="background-color: #337ab7;border-color: #337ab7;border-radius: 4px;padding: 10px 15px">
+            <h4 class="list-group-item-heading">验证手机号</h4>
+            <input class="mobile" type="text" placeholder="输入手机号" />
+            <button id="mobileBTN" class="btn btn-default btn-info">check</button>
+        </div>
+        <div class="list-group" style="background-color: #337ab7;border-color: #337ab7;border-radius: 4px;padding: 10px 15px">
+            <h4 class="list-group-item-heading">验证邮箱</h4>
+            <input class="email" type="text" placeholder="输入邮箱" />
+            <button id="emailBTN" class="btn btn-default btn-info">check</button>
+        </div>
+        <div class="list-group" style="background-color: #337ab7;border-color: #337ab7;border-radius: 4px;padding: 10px 15px">
+            <h4 class="list-group-item-heading">验证身份证</h4>
+            <input class="idcard" type="text" placeholder="输入身份证" />
+            <button id="idcardBTN" class="btn btn-default btn-info">check</button>
+        </div>
+        <div class="list-group" style="background-color: #337ab7;border-color: #337ab7;border-radius: 4px;padding: 10px 15px">
+            <h4 class="list-group-item-heading">验证表情</h4>
+            <input class="emoji" type="text" placeholder="输入表情" />
+            <button id="emojiBTN" class="btn btn-default btn-info">check</button>
+        </div>
     </div>
     <script type="text/javascript">
     $(function() {
@@ -85,6 +106,42 @@
             vibe.countDown('countdown');
         });
         $('.list-group p').eq(5).text(vibe.clock('clock'));
+        $('#mobileBTN').click(function() {
+            var mobile = $('.mobile').val();
+            if (vibe.isMobile(mobile)) {
+                vibe.alert('手机号正确');
+            } else {
+                vibe.alert('手机号不正确');
+            }
+        });
+        $('#emailBTN').click(function() {
+            var email = $('.email').val();
+            if (vibe.isEmail(email)) {
+                vibe.alert('邮箱正确');
+            } else {
+                vibe.alert('邮箱不正确');
+            }
+        });
+        $('#idcardBTN').click(function() {
+            var idcard = $('.idcard').val();
+            if (vibe.isIDCard(idcard)) {
+                vibe.alert('身份证正确');
+            } else {
+                vibe.alert('身份证不正确');
+            }
+        });
+        $('#emojiBTN').click(function() {
+            var emoji = $('.emoji').val();
+            if (vibe.isEmoji(emoji)) {
+                vibe.alert('emoji表情');
+            } else {
+                vibe.alert('非表情');
+            }
+        });
+        vibe.ajaxRequest('http://api.asilu.com/weather/', {}, function(res) {
+            console.log(JSON.stringify(res));
+        });
+
     });
     </script>
 </body>
