@@ -8,7 +8,7 @@ var vibe = {
     /**
      *获取当前的日期时间 格式“yyyy-MM-dd HH:MM:SS”
      */
-    dateFormat: function() {
+    getToday: function() {
         var date = new Date();
         var year = date.getFullYear();
         var month = date.getMonth() + 1;
@@ -247,5 +247,198 @@ var vibe = {
         var r = window.location.search.substr(1).match(reg);
         if (r !== null) return unescape(r[2]);
         return null;
+    },
+
+    /**
+     * 验证非法字符
+     * @param {string}
+     * @return {boolean}, 返回false表示含有非法字符
+     */
+    checkStrValid: function(checkStr) {
+        if (typeof checkStr == "undefined") {
+            return true;
+        }
+        var str = ["!", "#", "$", "%", "/", "\\", "'", "*", "&", "|"];
+        for (var i = 0; i < str.length; i++) {
+            if (checkStr.indexOf(str[i]) >= 0) {
+                return false;
+            }
+        }
+        return true;
+    },
+
+    /***
+     * 正整数验证
+     ***/
+    checkIntegerValid: function(checkStr) {
+        var reg = /^[0-9]*[1-9][0-9]*$/;
+        return reg.test(checkStr);
+    },
+
+    /**
+     * 比较日期大小
+     * @param {string} startTime
+     * @param {string} endTime
+     * @returns {boolean}   
+     */
+    compareDate: function(startTime, endTime) {
+        var startTimeArray = startTime.split("-");
+        var endTimeArray = endTime.split("-");
+        startTime = startTimeArray.join("/");
+        endTime = endTimeArray.join("/");
+
+        var startDate = new Date(startTime);
+        var endDate = new Date(endTime);
+
+        if (endDate.getTime() - startDate.getTime() < 0) {
+            return false;
+        } else {
+            return true;
+        }
+    },
+
+    /**
+     * 获取指定日期距当前日期天数 （指定日期大于当前日期）
+     * @param {string} startTime
+     * @param {string} endTime
+     * @returns {boolean}   
+     */
+    getDaysFromToday: function(dateStr) {
+        var dateStrArray = dateStr.split("-");
+        dateStr = dateStrArray.join("/");
+
+        var dateStrMilli = new Date(dateStr).getTime();
+        var todayMilli = new Date().getTime();
+
+        return Math.floor((dateStrMilli - todayMilli) / (3600 * 1000 * 24));
+    },
+
+    /**
+     * 获取指定日期
+     * @param {string} date
+     * @param {int} step
+     * @returns {string}   
+     */
+    getAssignDate: function(date, step) {
+        var dateArray = date.split("-");
+        dateTime = dateArray.join("/");
+
+        var newDate = new Date(dateTime);
+
+        //获取step天后的日期，若为负数，可获取过去的日期
+        newDate.setDate(newDate.getDate() + step);
+
+        var y = newDate.getFullYear();
+        var m = newDate.getMonth() + 1; //获取当前月份的日期
+        var d = newDate.getDate();
+
+        if (parseInt(m) < 10) {
+            m = "0" + m;
+        }
+
+        if (parseInt(d) < 10) {
+            d = "0" + d;
+        }
+
+        return y + "-" + m + "-" + d;
+    },
+
+    /**
+     * 根据月份步长获取指定日期
+     * @param {string} date
+     * @param {int} step
+     * @returns {string}   
+     */
+    getAssignDateByMonth: function(date, step) {
+        var dateArray = date.split("-");
+        dateTime = dateArray.join("/");
+
+        var newDate = new Date(dateTime);
+
+        //获取step天后的日期，若为负数，可获取过去的日期
+        newDate.setMonth(newDate.getMonth() + step); // getMonth()
+
+        var y = newDate.getFullYear();
+        var m = newDate.getMonth() + 1; //获取当前月份的日期
+        var d = newDate.getDate();
+
+        if (parseInt(m) < 10) {
+            m = "0" + m;
+        }
+
+        if (parseInt(d) < 10) {
+            d = "0" + d;
+        }
+
+        return y + "-" + m + "-" + d;
+    },
+
+    /**
+     * 格式化日期
+     */
+    dateFormat: function(date, fmt) {
+        // 月(M)、日(d)、小时(h)、分(m)、秒(s)、季度(q) 可以用 1-2 个占位符， 
+        // 年(y)可以用 1-4 个占位符，毫秒(S)只能用 1 个占位符(是 1-3 位的数字) 
+        // 例子： 
+        // ns.dateFormat(new Date(), "yyyy-MM-dd hh:mm:ss.S") ==> 2014-01-06 08:09:04.423 
+        // ns.dateFormat(new Date(), "yyyy/M/d") ==> 2014/1/6 
+        var o = {
+            "M+": date.getMonth() + 1, //月份 
+            "d+": date.getDate(), //日 
+            "h+": date.getHours(), //小时 
+            "m+": date.getMinutes(), //分 
+            "s+": date.getSeconds(), //秒 
+            "q+": Math.floor((date.getMonth() + 3) / 3), //季度 
+            "S": date.getMilliseconds() //毫秒 
+        };
+        if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var k in o)
+            if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        return fmt;
+    },
+
+    /**
+     * 获取时间数组
+     * @returns {Array}
+     */
+    getTimeArray: function(time) {
+        var timeArray = time.split(" ");
+        var dateArray = timeArray[0].split("-");
+        var hmsArray = timeArray[1].split(":");
+        var detailArray = [];
+
+        detailArray.year = dateArray[0];
+        detailArray.month = dateArray[1];
+        detailArray.day = dateArray[2];
+        detailArray.hour = hmsArray[0];
+        detailArray.minutes = hmsArray[1];
+        detailArray.seconds = hmsArray[2];
+
+        return detailArray;
+    },
+
+    /**
+     * 获取该月份的天数
+     * @returns {num}   
+     */
+    getMonthDays: function(year, month) {
+        month = parseInt(month, 10);
+        var d = new Date(new Date().getFullYear(), month, 0);
+        return d.getDate();
+    },
+
+    /**
+     * 回车搜索函数
+     * @param {string} selectStr
+     * @param {string} callback
+     * @returns {void}   
+     */
+    enterSubmit: function(selectStr, callBack) {
+        $(selectStr).bind('keyup', function(e) {
+            if (e.keyCode == 13) {
+                callBack();
+                return false;
+            }
+        });
     }
 };
