@@ -216,6 +216,9 @@ var vibe = {
                     ajaxRequest.abort();
                     vibe.alert("请求超时");
                 }
+            },
+            error: function(msg) {
+                vibe.alert(msg.statusText);
             }
         });
     },
