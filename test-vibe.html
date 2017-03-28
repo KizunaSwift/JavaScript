@@ -88,7 +88,7 @@
     </div>
     <script type="text/javascript">
     $(function() {
-        $('.list-group p').eq(0).text(vibe.dateFormat());
+        $('.list-group p').eq(0).text(vibe.dateFormat(new Date(), 'yyyy-MM-dd'));
         $('.list-group p').eq(1).text(vibe.formatCurrency('123456 .7 8 9 9 9'));
         $('.list-group p').eq(2).text(vibe.removeDuplicate([1, 2, 3, 3, 5, 5, 13]));
         $('.list-group p').eq(3).text(vibe.numberSort(['10', '5', '40', '25', '1000', '1']));

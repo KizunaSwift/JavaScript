@@ -1,6 +1,6 @@
 /**
  * lixianwei 2017-03-25
- * update 2017-03-27
+ * update 2017-03-28
  */
 var vibe = {
     version: '1.0',
