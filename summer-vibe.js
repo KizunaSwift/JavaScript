@@ -73,7 +73,7 @@ var vibe = {
      * 页面loading
      */
     showLoading: function() {
-        var loadingCSS = $("<style>.current a {font-size: 20px;}.over {background-color: #f5f5f5;display: none;height: 100%;left: 0;opacity: 0.5;position: absolute;top: 0;width: 100%;z-index: 1000;}.layout {display: none;height: 20%;left: 40%;position: absolute;text-align: center;top: 40%;width: 20%;z-index: 10013;}</style>");
+        var loadingCSS = $("<style>.current a {font-size: 20px;}.over {background-color: #f5f5f5;display: none;height: 100%;left: 0;opacity: 0.5;position: fixed;top: 0;width: 100%;z-index: 1000;}.layout {display: none;height: 20%;left: 40%;position: fixed;text-align: center;top: 40%;width: 20%;z-index: 10013;}</style>");
         $("head")[0].appendChild(loadingCSS[0]);
         var loadingDOM = $("<div id='over' class='over'></div><div id='layout' class='layout'><img src='https://raw.githubusercontent.com/summervibe/summer-vibe/master/loading.gif'/></div>");
         $("body").append(loadingDOM);
