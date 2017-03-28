@@ -204,7 +204,7 @@ var vibe = {
     ajaxRequest: function(url, params, callBack) {
         var ajaxRequest = $.ajax({
             url: url,
-            async: false,
+            async: true,
             timeout: 30000,
             type: "POST",
             dataType: "json",
