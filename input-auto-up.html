@@ -18,19 +18,16 @@
             // var elementTop = $('.keyboard').offset().top;
             // var elementBottom = elementTop + $('.keyboard').height();
             // $(window).scrollTop(elementBottom);
-            if(flag) {
-                $('.keyboard').css('bottom', '35px');
-                flag = 0;
-            }
             var tt = setInterval(function() {
                 $('.keyboard').scrollIntoView(false);
             }, 200);
         });
 
-        //$('.keyboard').blur(function() {
-            //flag = 0;
+        $('.keyboard').blur(function() {
+            $('.keyboard').css('bottom', '35px');
+            flag = 0;
             //clearInterval(tt);
-        //});
+        });
 
         var flag = 0;
         $(".keyboard").bind('input porpertychange',function(){
