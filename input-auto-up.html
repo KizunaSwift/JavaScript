@@ -31,10 +31,14 @@
         });
 
         var value;
-        $('.keyboard').onkeydown(function() {
+        $(".keyboard").bind('input porpertychange',function(){
             value = $('.keyboard').val().length;
             alert(value);
         });
+        // $('.keyboard').onkeydown(function() {
+            // value = $('.keyboard').val().length;
+            // alert(value);
+        // });
     });
     </script>
 </body>
