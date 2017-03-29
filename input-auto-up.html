@@ -23,9 +23,15 @@
         });
 
         $('.keyboard').blur(function() {
-            alert(1);
-            $('.keyboard').css('bottom','0');
+            alert(2);
             clearInterval(tt);
+        });
+
+        $('.keyboard').onkeyup(function() {
+            var value = $('.keyboard').value.length;
+            if(value >= 0) {
+               $('.keyboard').css('bottom', '35px'); 
+            }
         });
     });
     </script>
