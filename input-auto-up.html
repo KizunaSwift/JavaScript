@@ -11,10 +11,18 @@
 </head>
 
 <body>
-    <input class="keyboard" type="text" class="form-control" style="position: fixed;bottom: 0;width: 100%;height: 35px;" onfocus="this.scrollIntoView();" />
+    <input class="keyboard" type="text" class="form-control" style="position: fixed;bottom: 0;width: 100%;height: 35px;" />
     <script>
     $(function() {
-        alert($('.keyboard').getBoundingClientRect());
+        $('.keyboard').focus(function() {
+            var viewTop = $(window).scrollTop(); //可视区域顶部
+            var viewBottom = viewTop + window.innerHeight; //可视区域底部
+
+            var elementTop = $('.keyboard').offset().top;
+            var elementBottom = elementTop + $('.keyboard').height();
+            alert(viewTop + ',' + viewBottom + ',' + elementTop + ',' + elementBottom);
+            $(window).scrollTop(elementBottom);
+        });
     });
     </script>
 </body>
