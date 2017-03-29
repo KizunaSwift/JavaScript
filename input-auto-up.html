@@ -23,15 +23,16 @@
         });
 
         $('.keyboard').blur(function() {
-            alert(2);
+            alert(1);
             clearInterval(tt);
+            if (value >= 0) {
+                $('.keyboard').css('bottom', '35px');
+            }
         });
 
+        var value;
         $('.keyboard').onkeyup(function() {
-            var value = $('.keyboard').value.length;
-            if(value >= 0) {
-               $('.keyboard').css('bottom', '35px'); 
-            }
+            value = $('.keyboard').value.length;
         });
     });
     </script>
