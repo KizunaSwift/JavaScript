@@ -13,18 +13,15 @@
     <input class="keyboard" type="text" class="form-control" style="position: fixed;bottom: 0;width: 100%;height: 35px;" />
     <script>
     $(function() {
-        alert('gggggg');
+        alert('sss');
         $('.keyboard').bind('focus',function(){  
-            $(window).scrollTop($('.keyboard').offset().top + 35);
-            var tt = setInterval(function() {
+            /*var tt = setInterval(function() {
                 $('.keyboard').scrollIntoView(false);
-            }, 200);
+            }, 200);*/
+            $('.keyboard').hide();
+            $('body').append("<input class="new" type="text" class="form-control" style="position: fixed;bottom: 0;width: 100%;height: 35px;" />");
         }).bind('blur',function(){
-            clearInterval(tt);
-        });
-        
-        $('body').on('touchmove touchstart', function (event) {
-            event.preventDefault();
+            //clearInterval(tt);
         });
     });
     </script>
