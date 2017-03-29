@@ -17,7 +17,8 @@
         $('.keyboard').focus(function() {
             var elementTop = $('.keyboard').offset().top;
             var elementBottom = elementTop + $('.keyboard').height();
-            $(window).scrollTop(elementBottom + 35);
+            $(window).scrollTop(elementBottom);
+            $('.keyboard').css('bottom', '35px');
         });
     });
     </script>
