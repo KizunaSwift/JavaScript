@@ -11,16 +11,10 @@
 </head>
 
 <body>
-    <input class="keyboard" type="text" class="form-control" style="position: fixed;bottom: 0;width: 100%;height: 35px;" />
+    <input class="keyboard" type="text" class="form-control" style="position: absolute;bottom: 0;width: 100%;height: 35px;" />
     <script>
     $(function() {
         $('.keyboard').focus(function() {
-            if ($(window).scrollTop() > ($('.keyboard').offset().top + $('.keyboard').outerHeight())) {
-                alert('不在可视区域');
-            }
-            var viewTop = $(window).scrollTop(); //可视区域顶部
-            var viewBottom = viewTop + window.innerHeight; //可视区域底部
-
             var elementTop = $('.keyboard').offset().top;
             var elementBottom = elementTop + $('.keyboard').height();
             $(window).scrollTop(elementBottom);
