@@ -15,6 +15,9 @@
     <script>
     $(function() {
         $('.keyboard').focus(function() {
+            if ($(window).scrollTop() > ($('.keyboard').offset().top + $('.keyboard').outerHeight())) {
+                alert('不在可视区域');
+            }
             var viewTop = $(window).scrollTop(); //可视区域顶部
             var viewBottom = viewTop + window.innerHeight; //可视区域底部
 
