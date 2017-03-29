@@ -13,13 +13,15 @@
     <input class="keyboard" type="text" class="form-control" style="position: absolute;bottom: 0;width: 100%;height: 35px;border:1px solid red;" />
     <script>
     $(function() {
-        alert('ddd');
+        alert('ddd:' + $(document).height() + 'px');
         $('body').css('height', $(document).height() + 'px');
         $('.keyboard').bind('focus', function(){  
+            $('body').css('height', $(document).height() + 'px');
             /*var tt = setInterval(function() {
                 $('.keyboard').scrollIntoView(false);
             }, 200);*/
         }).bind('blur', function(){
+            $('body').css('height', $(document).height() + 'px');
             //clearInterval(tt);
         });
     });
