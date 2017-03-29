@@ -13,11 +13,15 @@
     <input class="keyboard" type="text" class="form-control" style="position: fixed;bottom: 0;width: 100%;height: 35px;" />
     <script>
     $(function() {
-        alert('2000');
+        alert('13000');
         $('.keyboard').focus(function() {
             // var elementTop = $('.keyboard').offset().top;
             // var elementBottom = elementTop + $('.keyboard').height();
             // $(window).scrollTop(elementBottom);
+            if(flag) {
+                $('.keyboard').css('bottom', '35px');
+                flag = 0; 
+            }
             var tt = setInterval(function() {
                 $('.keyboard').scrollIntoView(false);
             }, 200);
