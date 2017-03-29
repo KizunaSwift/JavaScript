@@ -13,7 +13,7 @@
     <input class="keyboard" type="text" class="form-control" style="position: fixed;bottom: 0;width: 100%;height: 35px;" />
     <script>
     $(function() {
-        alert('12000');
+        alert('12345');
         //$('.keyboard').focus(function() {
             // var elementTop = $('.keyboard').offset().top;
             // var elementBottom = elementTop + $('.keyboard').height();
@@ -27,7 +27,7 @@
             //clearInterval(tt);
         //});
         $('.keyboard').bind('focus',function(){  
-            $('.keyboard').css('position','static');  
+            $('.keyboard').css({'position':'static','top':window.screen.availHeight - 35});  
             //或者$('#viewport').height($(window).height()+'px');  
         }).bind('blur',function(){
             $('.keyboard').css({'position':'fixed','bottom':'0'});  
