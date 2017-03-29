@@ -13,7 +13,7 @@
     <input class="keyboard" type="text" class="form-control" style="position: fixed;bottom: 0;width: 100%;height: 35px;" />
     <script>
     $(function() {
-        alert('000');
+        alert('1000');
         $('.keyboard').focus(function() {
             // var elementTop = $('.keyboard').offset().top;
             // var elementBottom = elementTop + $('.keyboard').height();
@@ -26,13 +26,14 @@
         $('.keyboard').blur(function() {
             $('.keyboard').css('bottom', '35px');
             flag = 0;
-            //clearInterval(tt);
+            clearInterval(tt);
         });
 
         var flag = 0;
         $(".keyboard").bind('input porpertychange',function(){
             $('.keyboard').css('bottom', '0');
             flag = 1;
+            alert('input change');
         });
     });
     </script>
