@@ -23,7 +23,7 @@
         });
 
         $('.keyboard').blur(function() {
-            alert('1: ' + value);
+            alert('2: ' + value);
             clearInterval(tt);
             if (value >= 0) {
                 $('.keyboard').css('bottom', '35px');
@@ -33,6 +33,7 @@
         var value;
         $('.keyboard').onkeyup(function() {
             value = $('.keyboard').val().length;
+            alert(value);
         });
     });
     </script>
