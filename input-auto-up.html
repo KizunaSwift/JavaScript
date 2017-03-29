@@ -13,10 +13,7 @@
     <input class="keyboard" type="text" class="form-control" style="position: fixed;bottom: 0;width: 100%;height: 35px;" />
     <script>
     $(function() {
-        $('body').addEventListener('touchstart', function (ev) {
-            event.preventDefault();
-        });
-        alert('hhhhhhhhhhhhhhhh');
+        alert('ggggg');
         $('.keyboard').bind('focus',function(){  
             $(window).scrollTop($('.keyboard').offset().top + 35);
             var tt = setInterval(function() {
@@ -24,6 +21,10 @@
             }, 200);
         }).bind('blur',function(){
             clearInterval(tt);
+        });
+        
+        $('body').on('touchmove touchstart', function (event) {
+            event.preventDefault();
         });
     });
     </script>
