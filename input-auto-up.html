@@ -13,7 +13,7 @@
     <input class="keyboard" type="text" class="form-control" style="position: absolute;bottom: 0;width: 100%;height: 35px;" />
     <script>
     $(function() {
-        alert('111');
+        alert('2333');
         $('.keyboard').focus(function() {
             // var elementTop = $('.keyboard').offset().top;
             // var elementBottom = elementTop + $('.keyboard').height();
@@ -24,7 +24,6 @@
         });
 
         $('.keyboard').blur(function() {
-            alert('length: ' + len);
             clearInterval(tt);
             if (len >= 0) {
                 $('.keyboard').css('bottom', '35px');
@@ -34,12 +33,7 @@
         var len;
         $(".keyboard").bind('input porpertychange',function(){
             len = $('.keyboard').val().length;
-            alert(len);
         });
-        // $('.keyboard').onkeydown(function() {
-            // value = $('.keyboard').val().length;
-            // alert(value);
-        // });
     });
     </script>
 </body>
