@@ -23,6 +23,8 @@
         });
 
         $('.keyboard').blur(function() {
+            alert(1);
+            $('.keyboard').css('bottom','0');
             clearInterval(tt);
         });
     });
