@@ -24,17 +24,17 @@
         });
 
         $('.keyboard').blur(function() {
-            alert('2: ' + value);
+            alert('length: ' + len);
             clearInterval(tt);
-            if (value >= 0) {
+            if (len >= 0) {
                 $('.keyboard').css('bottom', '35px');
             }
         });
 
-        var value;
+        var len;
         $(".keyboard").bind('input porpertychange',function(){
-            value = $('.keyboard').val().length;
-            alert(value);
+            len = $('.keyboard').val().length;
+            alert(len);
         });
         // $('.keyboard').onkeydown(function() {
             // value = $('.keyboard').val().length;
