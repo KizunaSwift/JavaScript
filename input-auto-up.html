@@ -13,25 +13,16 @@
     <input class="keyboard" type="text" class="form-control" style="position: fixed;bottom: 0;width: 100%;height: 35px;" />
     <script>
     $(function() {
-        alert('10');
-        //$('.keyboard').focus(function() {
+        alert('101');
+        $('.keyboard').bind('focus',function(){  
             // var elementTop = $('.keyboard').offset().top;
             // var elementBottom = elementTop + $('.keyboard').height();
             // $(window).scrollTop(elementBottom);
-            //var tt = setInterval(function() {
-               // $('.keyboard').scrollIntoView(false);
-           // }, 200);
-       // });
-
-        //$('.keyboard').blur(function() {
-            //clearInterval(tt);
-        //});
-        $('.keyboard').bind('focus',function(){  
-            $('.keyboard').css({'position':'absolute','top':window.screen.availHeight - 35});  
-            //或者$('#viewport').height($(window).height()+'px');  
+            var tt = setInterval(function() {
+                $('.keyboard').scrollIntoView(false);
+            }, 200);
         }).bind('blur',function(){
-            $('.keyboard').css({'position':'fixed','bottom':'0'});  
-            //或者$('#viewport').height('auto');  
+            clearInterval(tt);
         });
     });
     </script>
