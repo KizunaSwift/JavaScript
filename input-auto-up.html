@@ -10,10 +10,11 @@
 </head>
 
 <body style="position:relative;">
-    <input class="keyboard" type="text" class="form-control" style="position: absolute;bottom: 0;width: 100%;height: 35px;border:1px solid red;" />
+    <input class="keyboard" type="text" class="form-control" style="position: absolute;width: 100%;height: 35px;border:1px solid red;" />
     <script>
     $(function() {
-        alert('000:' + $(document).height() + 'px');
+        alert('2333:' + $(document).height() + 'px');
+        $('.keyboard').css('bottom', '0');
         var flag = 0;
         $('body').css('height', $(document).height() + 'px');
         $('.keyboard').bind('focus', function(){  
