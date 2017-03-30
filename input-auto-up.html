@@ -19,7 +19,7 @@
         $('.keyboard').bind('focus', function(){  
             $('body').css('height', $(document).height() + 'px');
             if(flag) {
-                $('.keyboard').css('top', $(document).height() - 35 + 'px');
+                $('.keyboard').css('top', '300px');
             } else {
                 $('.keyboard').css('bottom', '0');
             }
@@ -28,6 +28,7 @@
             }, 200);*/
         }).bind('blur', function(){
             $('body').css('height', $(document).height() + 'px');
+            flag = 0;
             //clearInterval(tt);
         }).bind('input propertychange', function(){
             flag = 1;
