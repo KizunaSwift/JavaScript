@@ -53,7 +53,7 @@
     </div>
     <script>
     $(function() {
-        alert(1);
+        alert(111);
         $('.old').bind('focus', function() {
             $('.old').hide();
             $('.over').show();
@@ -62,7 +62,7 @@
         
         $('.new').bind('blur', function() {
             $('.old').show();
-            $('.new').empty();
+            $('.new').val('');
             $('.over').hide();
             $('.layout').hide();
         });
