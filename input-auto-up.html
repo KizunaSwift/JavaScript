@@ -10,26 +10,25 @@
 </head>
 
 <body style="position:relative;">
-    <input class="keyboard" type="text" class="form-control" style="position: absolute;width: 100%;height: 35px;border:1px solid red;" />
+    <input class="keyboard" type="text" class="form-control" style="display:none;position: absolute;width: 100%;height: 35px;border:1px solid red;" />
     <script>
     $(function() {
-        alert('2333:' + $(document).height() + 'px');
-        $('.keyboard').css('bottom', '0');
+        alert('222');
         var flag = 0;
+        $('.keyboard').css('top', ($(document).height() - 35) + 'px');
+        $('.keyboard').show();
         $('body').css('height', $(document).height() + 'px');
         $('.keyboard').bind('focus', function(){  
-            $('body').css('height', $(document).height() + 'px');
             if(flag) {
-                $('.keyboard').css('top', '300px');
+                $('.keyboard').css('top', ($(document).height() - 35) + 'px');
             } else {
                 $('.keyboard').css('bottom', '0');
             }
+            flag = 0;
             /*var tt = setInterval(function() {
                 $('.keyboard').scrollIntoView(false);
             }, 200);*/
         }).bind('blur', function(){
-            $('body').css('height', $(document).height() + 'px');
-            flag = 0;
             //clearInterval(tt);
         }).bind('input propertychange', function(){
             flag = 1;
