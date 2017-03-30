@@ -28,8 +28,6 @@
             }, 200);*/
         }).bind('blur', function(){
             $('body').css('height', $(document).height() + 'px');
-            $('.keyboard').css('bottom', '0');
-            flag = 0;
             //clearInterval(tt);
         }).bind('input propertychange', function(){
             flag = 1;
