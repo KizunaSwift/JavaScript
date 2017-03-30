@@ -20,6 +20,8 @@
             $('body').css('height', $(document).height() + 'px');
             if(flag) {
                 $('.keyboard').css('bottom', '35px');
+            } else {
+                $('.keyboard').css('bottom', '0');
             }
             /*var tt = setInterval(function() {
                 $('.keyboard').scrollIntoView(false);
@@ -27,6 +29,7 @@
         }).bind('blur', function(){
             $('body').css('height', $(document).height() + 'px');
             $('.keyboard').css('bottom', '0');
+            flag = 0;
             //clearInterval(tt);
         }).bind('input propertychange', function(){
             flag = 1;
