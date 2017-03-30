@@ -53,7 +53,9 @@
     </div>
     <script>
     $(function() {
+        alert(123);
         $('.old').bind('focus', function() {
+            $('.old').hide();
             $('.over').show();
             $('.layout').show('normal', function() {
                 $('.new').attr('autofocus','autofocus');
