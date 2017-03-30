@@ -32,7 +32,7 @@
         display: none;
         height: auto;
         left: 0;
-        position: absolute;
+        position: fixed;
         text-align: center;
         width: 100%;
         z-index: 10013;
@@ -53,11 +53,19 @@
     </div>
     <script>
     $(function() {
-        alert(555);
+        alert(111);
         $('.old').bind('focus', function() {
             $('.old').hide();
             $('.over').show();
             $('.layout').show();
+        });
+        
+        $('.new').bind('blur', function() {
+            $('.old').show('normal', function() {
+                $('.old').val($('.new').val());
+            });
+            $('.over').hide();
+            $('.layout').hide();
         });
     });
     </script>
