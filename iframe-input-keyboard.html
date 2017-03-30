@@ -39,21 +39,21 @@
     }
 
     .new {
-        width: 100%;
+        width: 70%;
     }
     </style>
 </head>
 
 <body>
     <div class="text-center" style="height:1000px;line-height: 1000px;">sometext...</div>
-    <input class="old" type="text" class="form-control" placeholder="添加评论..." />
+    <input class="old" type="text" class="form-control" placeholder="添加评论1..." />
     <div class="over"></div>
     <div class="layout">
-        <input class="new" type="text" autofocus="autofocus" placeholder="添加评论..." />
+        <input class="new" type="text" autofocus="autofocus" placeholder="添加评论2..." /><span><button>发送</button></span>
     </div>
     <script>
     $(function() {
-        alert(111);
+        alert(123);
         $('.old').bind('focus', function() {
             $('.old').hide();
             $('.over').show();
@@ -61,11 +61,16 @@
         });
         
         $('.new').bind('blur', function() {
-            $('.old').show('normal', function() {
-                $('.old').val($('.new').val());
-            });
+            $('.old').show();
             $('.over').hide();
             $('.layout').hide();
+        });
+        $('.new').bind('keyup', function(e) {
+            alert(e.keyCode);
+            if (e.keyCode === 13) {
+                alert('发送评论');
+                return false;
+            }
         });
     });
     </script>
