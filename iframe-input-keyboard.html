@@ -49,17 +49,15 @@
     <input class="old" type="text" class="form-control" />
     <div class="over"></div>
     <div class="layout">
-        <input class="new" type="text" />
+        <input class="new" type="text" autofocus="autofocus" />
     </div>
     <script>
     $(function() {
-        alert(123);
+        alert(2333);
         $('.old').bind('focus', function() {
             $('.old').hide();
             $('.over').show();
-            $('.layout').show('normal', function() {
-                $('.new').attr('autofocus','autofocus');
-            });
+            $('.layout').show();
         });
     });
     </script>
