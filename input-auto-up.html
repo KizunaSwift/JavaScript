@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <input class="keyboard" type="text" class="form-control" style="position: fixed;bottom:35px;width: 100%;height: 35px;border:1px solid red;" />
+    <input class="keyboard" type="text" class="form-control" style="position: fixed;bottom:0;width: 100%;height: 35px;border:1px solid red;" />
     <script>
     $(function() {
         $('.keyboard').bind('focus', function(){  
@@ -19,6 +19,8 @@
             }, 200);
         }).bind('blur', function(){
             clearInterval(tt);
+        }).bind('input propertychange', function(){
+        
         });
     });
     </script>
