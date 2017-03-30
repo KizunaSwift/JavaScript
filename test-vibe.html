@@ -92,19 +92,24 @@
         $('.list-group p').eq(1).text(vibe.formatCurrency('123456 .7 8 9 9 9'));
         $('.list-group p').eq(2).text(vibe.removeDuplicate([1, 2, 3, 3, 5, 5, 13]));
         $('.list-group p').eq(3).text(vibe.numberSort(['10', '5', '40', '25', '1000', '1']));
+
         $('.showLoading').click(function() {
             vibe.showLoading();
             setTimeout(function() {
                 vibe.hideLoading();
             }, 2000);
         });
+
         $('.selfAlert').click(function() {
             vibe.alert('这是一个自定义弹出提示');
         });
+
         $('#countdown').click(function() {
-            vibe.countDown('countdown');
+            vibe.countDown('#countdown');
         });
-        $('.list-group p').eq(5).text(vibe.clock('clock'));
+
+        $('.list-group p').eq(5).text(vibe.clock('#clock'));
+
         $('#mobileBTN').click(function() {
             var mobile = $('.mobile').val();
             if (vibe.isMobile(mobile)) {
@@ -113,6 +118,7 @@
                 vibe.alert('手机号不正确');
             }
         });
+
         $('#emailBTN').click(function() {
             var email = $('.email').val();
             if (vibe.isEmail(email)) {
@@ -121,6 +127,7 @@
                 vibe.alert('邮箱不正确');
             }
         });
+
         $('#idcardBTN').click(function() {
             var idcard = $('.idcard').val();
             if (vibe.isIDCard(idcard)) {
@@ -129,6 +136,7 @@
                 vibe.alert('身份证不正确');
             }
         });
+
         $('#emojiBTN').click(function() {
             var emoji = $('.emoji').val();
             if (vibe.isEmoji(emoji)) {
@@ -137,6 +145,7 @@
                 vibe.alert('非表情');
             }
         });
+
         vibe.ajaxRequest('http://api.asilu.com/weather/', {}, function(res) {
             console.log(JSON.stringify(res));
         });

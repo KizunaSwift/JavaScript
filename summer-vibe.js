@@ -1,6 +1,6 @@
 /**
  * lixianwei 2017-03-25
- * update 2017-03-28
+ * update 2017-03-30
  */
 var vibe = {
     version: '1.0',
@@ -113,26 +113,25 @@ var vibe = {
      */
     countDown: function(id) {
         var countdown = 60;
-        var Id = '#' + id;
 
         function settime() {
             if (countdown === 0) {
-                $(Id).removeAttr('disabled');
-                $(Id).css({
+                $(id).removeAttr('disabled');
+                $(id).css({
                     'background': '#5bc0de',
                     'border-color': '#5bc0de'
                 });
                 countdown = 60;
-                $(Id).text('倒计时60s');
+                $(id).text('倒计时60s');
                 clearInterval(t);
             } else {
-                $(Id).attr('disabled', 'disabled');
-                $(Id).css({
+                $(id).attr('disabled', 'disabled');
+                $(id).css({
                     'background': '#999',
                     'border-color': '#999'
                 });
                 countdown = countdown === 60 ? 59 : countdown;
-                $(Id).text(countdown + 's');
+                $(id).text(countdown + 's');
                 countdown--;
             }
         }
@@ -145,7 +144,6 @@ var vibe = {
      * 闹钟 - 当前时间
      */
     clock: function(id) {
-        var Id = '#' + id;
 
         function settime() {
             var date = new Date();
@@ -159,7 +157,7 @@ var vibe = {
             if (s >= 0 && s < 10) {
                 s = '0' + s;
             }
-            $(Id).text(h + ':' + m + ':' + s);
+            $(id).text(h + ':' + m + ':' + s);
         }
         var t = setInterval(function() {
             settime();
