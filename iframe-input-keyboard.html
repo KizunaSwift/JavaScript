@@ -11,7 +11,9 @@
     .gotocomment {
         border: 1px solid red;
         bottom: 0;
-        height: 50px;
+        height: 30px;
+        line-height: 30px;
+        padding-left: 10px;
         position: fixed;
         width: 100%;
     }
@@ -38,31 +40,45 @@
         width: 100%;
         z-index: 10013;
     }
-
+    
+    .commentFrame {
+        border: none;
+        bottom: 0;
+        display: none;
+        position: fixed;
+        width: 100%;
+        z-index: 100000;
+    }
+    
     .keyboard {
-        width: 70%;
+        border: 1px solid red;
+        bottom: 0;
+        height: 30px;
+        line-height: 30px;
+        padding-left: 10px;
+        position: fixed;
+        width: 100%;
     }
     </style>
 </head>
 
 <body>
-    <div class="text-center" style="height:1000px;line-height: 1000px;">sometext...</div>
+    <div class="text-center" style="height:1000px;line-height: 1000px;">comments...</div>
     <div class="gotocomment">添加评论…</div>
     <div class="over"></div>
-    <div class="layout">
-        <input class="keyboard" type="text" autofocus="autofocus" placeholder="添加评论..." /><span><button>发送</button></span>
-    </div>
+    <iframe src="" class="commentFrame">
+    </iframe>
     <script>
     $(function() {
-        alert('ggg');
         $('.gotocomment').click(function() {
             $('.over').show();
-            $('.layout').show();
+            $('.commentFrame').show();
+            $("<input class='keyboard' autofocus='autofocus' type='text' value='添加评论…' style='border: 1px solid red;bottom: 0;height: 30px;line-height: 30px;padding-left: 10px;position: fixed;width: 100%;left:0;' />").appendTo($("iframe")[0].contentWindow.document.body);
         });
-        
-        $('.keyboard').bind('blur', function() {
+
+        $('.over').click(function() {
             $('.over').hide();
-            $('.layout').hide();
+            $('.commentFrame').hide();
         });
     });
     </script>
