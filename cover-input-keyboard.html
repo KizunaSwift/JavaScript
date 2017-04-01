@@ -74,7 +74,7 @@
 
     $(function() {
         for (var i = 0; i < 50; i++) {
-            $('.text-center').append("三星“手撕”华为P10，网友：说再多老子只买国产！<br/>");
+            $('.text-center').append("三星“手撕”华为P10，网友：说再多老子只买国产!！<br/>");
         }
 
         $('.gotocomment').click(function() {
@@ -82,7 +82,9 @@
             $('html, body').css('overflow', 'hidden');
             $('.gotocomment').hide();
             $('.over').show();
-            $('.commentBox').show();
+            $('.commentBox').show('normal', function() {
+                $('.keyboard').focus();
+            });
         });
 
         $('.over').click(function() {
