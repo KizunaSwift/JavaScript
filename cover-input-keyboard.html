@@ -83,13 +83,11 @@
             $('html, body').css('overflow', 'hidden');
             $('.gotocomment').hide();
             $('.over').show();
-            $('.commentBox').show('normal', function() {
-                $('.keyboard').focus(function() {
-                    setInterval(function() {
-                        $('.keyboard').scrollIntoView(false);
-                    }, 200);
-                });
-            });
+            $('.commentBox').show();
+            $('.keyboard').focus();
+            setInterval(function() {
+                $('.keyboard').scrollIntoView(false);
+            }, 200);
         });
 
         $('.over').click(function() {
