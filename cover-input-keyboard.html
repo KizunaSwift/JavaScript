@@ -88,13 +88,13 @@
             $('html, body').css('overflow', 'hidden');
             $('.gotocomment').hide();
             $('.over').show();
-            $('.commentBox').show();
-            $('.keyboard').focus(function() {
-                var eleInput = $('.keyboard').offsetTop;
+            $('.commentBox').show('normal', function() {
+                var eleInput = $('.keyboard').offset().top;
                 if (eleInput >= $(window).scrollTop() && eleInput < ($(window).scrollTop() + $(window).height())) {
                     $('img').hide();
                 }
             });
+            $('.keyboard').focus();
             setInterval(function() {
                 $('.keyboard').scrollIntoView(false);
             }, 200);
