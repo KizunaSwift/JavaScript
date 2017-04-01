@@ -88,12 +88,7 @@
             $('html, body').css('overflow', 'hidden');
             $('.gotocomment').hide();
             $('.over').show();
-            $('.commentBox').show('normal', function() {
-                var eleInput = $('.keyboard').offset().top;
-                if (eleInput >= $(window).scrollTop() && eleInput < ($(window).scrollTop() + $(window).height())) {
-                    $('img').hide();
-                }
-            });
+            $('.commentBox').show();
             $('.keyboard').focus();
             setInterval(function() {
                 $('.keyboard').scrollIntoView(false);
