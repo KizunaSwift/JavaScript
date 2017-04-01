@@ -35,7 +35,7 @@
     .commentBox {
         background: #fff;
         bottom: 0;
-        display: block;
+        display: none;
         left: 0;
         padding: 10px;
         position: fixed;
@@ -58,10 +58,10 @@
 
 <body>
     <div class="text-center"></div>
-    <!-- <div class="gotocomment">添加评论…</div> -->
+    <div class="gotocomment">添加评论…</div>
     <div class="over"></div>
     <div class="commentBox">
-        <input type="text" class="keyboard" placeholder="添加评论…" />
+        <input type="text" autofocus="autofocus" class="keyboard" placeholder="添加评论…" />
     </div>
     <script>
     var status = 1;
@@ -74,7 +74,7 @@
 
     $(function() {
         for (var i = 0; i < 50; i++) {
-            $('.text-center').append("三星“手撕”华为P10，网友：说再多老子只买国产!!!<br/>");
+            $('.text-center').append("三星“手撕”华为P10，网友：说再多老子只买国产!<br/>");
         }
 
         $('.gotocomment').click(function() {
@@ -83,22 +83,20 @@
             $('.gotocomment').hide();
             $('.over').show();
             $('.commentBox').show('normal', function() {
-                $('.keyboard').focus();
+                $('.keyboard').focus(function() {
+                    setInterval(function() {
+                        $('.keyboard').scrollIntoView(false);
+                    }, 200);
+                });
             });
-        });
-
-        $('.keyboard').focus(function() {
-            status = 0;
-            $('.over').show();
-            $('html, body').css('overflow', 'hidden');
         });
 
         $('.over').click(function() {
             status = 1;
-            $('.over').hide();
             $('html, body').css('overflow', 'visible');
-            //$('.gotocomment').show();
-            //$('.commentBox').hide();
+            $('.gotocomment').show();
+            $('.over').hide();
+            $('.commentBox').hide();
         });
     });
     </script>
