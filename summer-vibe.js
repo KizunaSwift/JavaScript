@@ -1,6 +1,6 @@
 /**
  * lixianwei 2017-03-25
- * update 2017-03-30
+ * update 2017-04-01
  */
 var vibe = {
     version: '1.0',
@@ -442,5 +442,21 @@ var vibe = {
                 return false;
             }
         });
+    },
+    /**
+     * 字符串逆向排序
+     */
+    reverseStr: function(str) {
+        return str.toString().split('').reverse().join('');
+    },
+    /**
+     * 字符串首字母大写
+     */
+    toUppercaseStr: function(str) {
+        var array = str.toLowerCase().split(" ");
+        for (var i in array) {
+            array[i] = array[i][0].toUpperCase() + array[i].substring(1, array[i].length);
+        }
+        return array.join(" ");
     }
 };
