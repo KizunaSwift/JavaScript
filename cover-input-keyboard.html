@@ -51,6 +51,7 @@
         left: 0;
         line-height: 30px;
         padding-left: 10px;
+        position: absolute;
         width: 100%;
     }
     </style>
@@ -82,9 +83,6 @@
             $('html, body').css('overflow', 'hidden');
             $('.gotocomment').hide();
             $('.over').show();
-            if ($('.commentBox').length === 0) {
-                $('body').append("<div class='commentBox'><input type='text' autofocus='autofocus' class='keyboard' placeholder='添加评论…' /></div>");
-            }
             $('.commentBox').show('normal', function() {
                 $('.keyboard').focus(function() {
                     setInterval(function() {
@@ -99,7 +97,7 @@
             $('html, body').css('overflow', 'visible');
             $('.gotocomment').show();
             $('.over').hide();
-            $('.commentBox').remove();
+            $('.commentBox').hide();
         });
     });
     </script>
