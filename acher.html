@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <title>anchor</title>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery-scrollTo/2.1.2/jquery.scrollTo.min.js"></script>
+    <style type="text/css">
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    
+    .menu {
+        height: 100%;
+        margin: auto;
+        position: fixed;
+        width: 30%;
+    }
+    
+    .guide {
+        margin-left: 30%;
+        width: 70%;
+    }
+    
+    .nav {
+        height: 20%;
+        margin-top: 0;
+        padding: 0;
+        position: fixed;
+        top: 40%;
+        width: 30%;
+    }
+    
+    .nav li {
+        height: 24px;
+        line-height: 24px;
+        list-style: none;
+        margin-bottom: 10px;
+        text-align: center;
+        width: 100%;
+    }
+    
+    .box {
+        background: #eee;
+        height: 500px
+    }
+    
+    h3 {
+        border-bottom: 1px solid #ddd;
+        font-size: 14px;
+        margin: 0;
+        padding: 10px;
+    }
+    
+    .active {
+        color: #fe4c40;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="maim">
+        <div class="menu">
+            <ul class="nav">
+                <li><a href="#" class="nav_pro active">产品展示</a></li>
+                <li><a href="#" class="nav_news">新闻中心</a></li>
+                <li><a href="#" class="nav_ser">服务支持</a></li>
+                <li><a href="#" class="nav_con">联系我们</a></li>
+                <li><a href="#" class="nav_job">人才招聘</a></li>
+            </ul>
+        </div>
+        <div class="guide">
+            <div id="pro" class="box">
+                <h3>产品展示</h3>
+            </div>
+            <div id="news" class="box">
+                <h3>新闻中心</h3>
+            </div>
+            <div id="ser" class="box">
+                <h3>服务支持</h3>
+            </div>
+            <div id="con" class="box">
+                <h3>联系我们</h3>
+            </div>
+            <div id="job" class="box">
+                <h3>人才招聘</h3>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    $(function() {
+        $(".nav_pro").click(function() {
+            $.scrollTo('#pro', 500);
+            fnSetColor(0);
+        });
+        $(".nav_news").click(function() {
+            $.scrollTo('#news', 800);
+            fnSetColor(1);
+        });
+        $(".nav_ser").click(function() {
+            $.scrollTo('#ser', 1000);
+            fnSetColor(2);
+        });
+        $(".nav_con").click(function() {
+            $.scrollTo('#con', 1200);
+            fnSetColor(3);
+        });
+        $(".nav_job").click(function() {
+            $.scrollTo('#job', 1500);
+            fnSetColor(4);
+        });
+
+        $(window).scroll(function() {
+            //console.log($(this).scrollTop()); 浏览器兼容性问题
+            if ($(this).scrollTop() >= 0 && $(this).scrollTop() < 500) {
+                fnSetColor(0);
+            }
+            if ($(this).scrollTop() >= 500 && $(this).scrollTop() < 800) {
+                fnSetColor(1);
+            }
+            if ($(this).scrollTop() >= 800 && $(this).scrollTop() < 1000) {
+                fnSetColor(2);
+            }
+            if ($(this).scrollTop() >= 1200 && $(this).scrollTop() < 1500) {
+                fnSetColor(3);
+            }
+            if ($(this).scrollTop() >= 1500) {
+                fnSetColor(4);
+            }
+        });
+
+        function fnSetColor(index) {
+            for (var i = 0; i < 5; i++) {
+                if (i !== index) {
+                    $('ul li a').eq(i).removeClass('active');
+                } else {
+                    $('ul li a').eq(i).addClass('active');
+                }
+            }
+        }
+    });
+    </script>
+</body>
+
+</html>

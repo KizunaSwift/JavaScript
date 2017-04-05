@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>jquery scrollTo</title>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery-scrollTo/2.1.2/jquery.scrollTo.min.js"></script>
+    <style type="text/css">
+    .nav {
+        margin: 20px auto;
+        width: 500px;
+    }
+    
+    .nav li {
+        float: left;
+        height: 24px;
+        line-height: 24px;
+        list-style: none;
+        width: 100px;
+    }
+    
+    .box {
+        height: 500px
+    }
+    
+    h3 {
+        font-size: 14px;
+        height: 32px;
+        line-height: 32px;
+        padding-left: 20px;
+    }
+    </style>
+</head>
+
+<body>
+    <ul class="nav">
+        <li><a href="#" class="nav_pro">产品展示</a></li>
+        <li><a href="#" class="nav_news">新闻中心</a></li>
+        <li><a href="#" class="nav_ser">服务支持</a></li>
+        <li><a href="#" class="nav_con">联系我们</a></li>
+        <li><a href="#" class="nav_job">人才招聘</a></li>
+    </ul>
+    <br />
+    <div id="pro" class="box">
+        <h3>产品展示</h3>
+    </div>
+    <div id="news" class="box">
+        <h3>新闻中心</h3>
+    </div>
+    <div id="ser" class="box">
+        <h3>服务支持</h3>
+    </div>
+    <div id="con" class="box">
+        <h3>联系我们</h3>
+    </div>
+    <div id="job" class="box">
+        <h3>人才招聘</h3>
+    </div>
+    <script type="text/javascript">
+    $(function() {
+        $(".nav_pro").click(function() {
+            $.scrollTo('#pro', 500);
+        });
+        $(".nav_news").click(function() {
+            $.scrollTo('#news', 800);
+        });
+        $(".nav_ser").click(function() {
+            $.scrollTo('#ser', 1000);
+        });
+        $(".nav_con").click(function() {
+            $.scrollTo('#con', 1200);
+        });
+        $(".nav_job").click(function() {
+            $.scrollTo('#job', 1500);
+        });
+    });
+    </script>
+</body>
+
+</html>
