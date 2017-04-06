@@ -1,6 +1,6 @@
 /**
  * lixianwei 2017-03-25
- * update 2017-04-01
+ * update 2017-04-06
  */
 var vibe = {
     version: '1.0',
@@ -455,7 +455,8 @@ var vibe = {
     toUppercaseStr: function(str) {
         var array = str.toLowerCase().split(" ");
         for (var i in array) {
-            array[i] = array[i][0].toUpperCase() + array[i].substring(1, array[i].length);
+            //array[i] = array[i][0].toUpperCase() + array[i].substring(1, array[i].length);
+            array[i] = array[i].charAt(0).toUpperCase() + array[i].slice(1);
         }
         return array.join(" ");
     }
