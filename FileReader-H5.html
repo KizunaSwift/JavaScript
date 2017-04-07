@@ -38,6 +38,7 @@
             oFReader.onload = function(oFREvent) {
                 pic.src = oFREvent.target.result;
                 console.log(oFREvent);
+                alert(oFREvent.target.result);
             };
         } else if (document.all) { //IE8-
             file.select();
