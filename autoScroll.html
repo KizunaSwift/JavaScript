@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+
+<head>
+    <title>页面自动滚动</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="Author" content="summer vibe" />
+    <meta name="Keywords" content="页面自动滚动" />
+</head>
+
+<body>
+    <script type="text/javascript">
+	var locate = 0;
+	var scrollup = false;
+    var timer = setInterval("scrollDown()", 30); // 设置滚动速度，数字越大，滚动越慢。
+    function scrollDown() {
+        if (document.body.scrollTop + window.screen.availHeight < document.body.scrollHeight && !scrollup) {
+            locate++;
+			scroll(0, locate);
+        } else {
+			locate--;
+			scroll(0, locate);
+			scrollup = locate === 0 ? false : true;
+        }
+    }
+    </script>
+    <pre>
+她要飞了...
+我静静的站着，看着...
+飞吧
+飞的越高越好，越远越好，越飘逸越好
+飞出我的视线，飞出我的脑海...
+从此不再牵挂...
+#弹情梳爱#
+对不起
+让你受了伤
+我也感到痛
+你也许已经痊愈
+我却饮恨终身
+我的想念与你无关
+从此天各一边
+以后我就老老实实的想你
+不再给你说亲密的话语
+不再惹你三心二意
+昏暗的小屋
+我向墙角走去
+射向墙角视线在慢慢缩短
+缩短……
+身躯也随之缩小
+缩小……
+再向前一步，我就要触及空间的消失点
+我闭上了眼睛
+纵身向前
+……
+有些事
+像说出去的话，
+再也收不回；
+像泼出去的水，
+再也收不回；
+像放出去的屁，
+再也收不回
+……
+不该得的
+不要强求
+抓住应该得的
+不要放手
+可是
+有些东西
+你不知道应不应该得到
+手机里都是你的短信，短信提示音一响，脑子里瞬间会腾现出你。
+她要飞了...
+我静静的站着，看着...
+飞吧
+飞的越高越好，越远越好，越飘逸越好
+飞出我的视线，飞出我的脑海...
+从此不再牵挂...
+#弹情梳爱#
+对不起
+让你受了伤
+我也感到痛
+你也许已经痊愈
+我却饮恨终身
+我的想念与你无关
+从此天各一边
+以后我就老老实实的想你
+不再给你说亲密的话语
+不再惹你三心二意
+昏暗的小屋
+我向墙角走去
+射向墙角视线在慢慢缩短
+缩短……
+身躯也随之缩小
+缩小……
+再向前一步，我就要触及空间的消失点
+我闭上了眼睛
+纵身向前
+……
+有些事
+像说出去的话，
+再也收不回；
+像泼出去的水，
+再也收不回；
+像放出去的屁，
+再也收不回
+……
+不该得的
+不要强求
+抓住应该得的
+不要放手
+可是
+有些东西
+你不知道应不应该得到
+手机里都是你的短信，短信提示音一响，脑子里瞬间会腾现出你。</pre>
+</body>
+
+</html>
