@@ -1,6 +1,6 @@
 /**
  * lixianwei 2017-03-25
- * update 2017-04-06
+ * update 2017-04-13
  */
 var vibe = {
     version: '1.0',
@@ -170,6 +170,21 @@ var vibe = {
     isMobile: function(str) {
         var regExp = /^0?1[3|4|5|7|8][0-9]\d{8}$/;
         return regExp.test(str);
+    },
+
+    /**
+     * @验证电话号码
+     * @param {String} checkStr
+     * @returns {Boolean}
+     */
+    checkLinkPhoneValid: function(checkStr) {
+        var tel = /^(\(\d{3,4}\)|\d{3,4}\-{0,1})?\d{7,8}(\-\d{1,5})?$/;
+        var mobile = /^1[3|4|5|7|8][0-9]\d{4,8}$/;
+
+        var test1 = tel.test(checkStr);
+        var test2 = mobile.test(checkStr);
+
+        return (test1 || test2);
     },
 
     /*
