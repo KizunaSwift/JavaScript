@@ -18,10 +18,12 @@
         <input type="text" name="url" value="http://w3school.com.cn/" />
     </form>
     <script>
+    /*====$.map()====*/
     $("p").append($("input").map(function() {
         return $(this).val();
     }).get().join(", "));
 
+    /*====module demo1====*/
     var foo = (function module() {
         var something = 'cool module';
         var another = [1, 2, 3];
@@ -43,6 +45,7 @@
     foo.something();
     foo.another();
 
+    /*====module demo2====*/
     var foo2 = (function module(id) {
         function identity1() {
             console.log(id);
