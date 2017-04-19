@@ -18,10 +18,20 @@
         <input type="text" name="url" value="http://w3school.com.cn/" />
     </form>
     <script>
-    /*====$.map()====*/
-    $("p").append($("input").map(function() {
-        return $(this).val();
-    }).get().join(", "));
+    $(function() {
+        /*====$.map()====*/
+        $("p").append($("input").map(function() {
+            return $(this).val();
+        }).get().join(", "));
+
+        /*====$.merge() $.grep()====*/
+        var arr = $.merge([1, 2, 3], [13, 15, 20]);
+        console.log(arr);
+        var result = $.grep(arr, function(value, index) {
+            return value > 10;
+        }, false);
+        console.log(result);
+    });
 
     /*====module demo1====*/
     var foo = (function module() {
