@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no" />
+    <title>H5 DataBase</title>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        initDatabase();
+        $("#btn_save").click(function() {
+            var userName = $("#userName").val();
+            var title = $("#title").val();
+            var message = $("#message").val();
+            if ($("#userName").val() === '' || $("#title").val() === '' || $("#message").val() === '') {
+                alert('请输入');
+                return;
+            }
+            var db = getDB();
+            // 执行sql脚本，插入数据
+            db.transaction(function(trans) {
+                trans.executeSql("insert into Demo(user_name,title,message) values(?,?,?) ", [userName, title, message], function(ts, data) {
+                }, function(ts, error) {
+                    alert(error.message);
+                });
+            });
+            $("#userName").val('');
+            $("#title").val('');
+            $("#message").val('');
+            showData();
+        });
+    });
+
+    function getDB() {
+        // 打开数据库，或者直接连接数据库参数：数据库名称，版本，概述，大小
+        // 如果数据库不存在那么创建之
+        var db = openDatabase("myDB", "1.0", "it's to save demo data!", 1024 * 1024);
+        if (!db) {
+            alert("数据库创建失败");
+        } else {
+            // alert("数据库创建成功");
+        }
+        return db;
+    }
+
+    function initDatabase() {
+        var db = getDB(); //初始化数据库
+        if (!db) {
+            alert("您的浏览器不支持HTML5本地数据库");
+            return;
+        }
+        db.transaction(function(trans) { //启动一个事务，并设置回调函数
+            //执行sql脚本
+            trans.executeSql("create table if not exists Demo(user_name text null,title text null,message text null)", [], function(ts, result) {
+            }, function(ts, error) {
+                alert('表创建失败:\n' + error.message);
+            });
+        });
+    }
+
+    function showData() {
+        $("#tb_data").empty();
+        var db = getDB();
+        db.transaction(function(trans) {
+            trans.executeSql("select * from Demo", [], function(ts, data) {
+                if (data) {
+                    for (var i = 0; i < data.rows.length; i++) {
+                        renderData(data.rows.item(i)); //获取某行数据的json对象
+                    }
+                }
+            }, function(ts, error) {
+                alert(error.message);
+            });
+        });
+    }
+
+    function clearData() {
+        $("#tb_data").empty();
+        var db = getDB();
+        db.transaction(function(trans) {
+            trans.executeSql("Delete from Demo where 1=1", [], function(ts, data) {
+                if (data) {
+                    for (var i = 0; i < data.rows.length; i++) {
+                        renderData(data.rows.item(i));
+                    }
+                }
+            }, function(ts, error) {
+                alert(error.message);
+            });
+        });
+    }
+
+    function renderData(data) {
+        var userName = data.user_name;
+        var title = data.title;
+        var message = data.message;
+        var html = "";
+        html += "<tr>";
+        html += "<td>" + userName + "</td>";
+        html += "<td>" + title + "</td>";
+        html += "<td>" + message + "</td>";
+        html += "</tr>";
+        $("#tb_data").append(html);
+    }
+    </script>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td>用户名：</td>
+            <td>
+                <input type="text" name="userName" id="userName" required/>
+            </td>
+        </tr>
+        <tr>
+            <td>标题：</td>
+            <td>
+                <input type="text" name="title" id="title" required/>
+            </td>
+        </tr>
+        <tr>
+            <td>留言：</td>
+            <td>
+                <input type="text" name="message" id="message" required/>
+            </td>
+        </tr>
+    </table>
+    <input type="button" value="保存" id="btn_save" />
+    <hr/>
+    <input type="button" value="展示所有数据" onclick="showData();" />
+    <input type="button" value="清空所有数据" onclick="clearData();" />
+    <table id="tb_data">
+    </table>
+</body>
+
+</html>
