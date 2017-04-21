@@ -9,6 +9,8 @@
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
     $(function() {
+        alert('localStorage: ' + localStorage.username);
+        localStorage.username = 'summer';
         initDatabase();
         $("#btn_save").click(function() {
             var userName = $("#userName").val();
