@@ -79,11 +79,13 @@ var vibe = {
         $("body").append(loadingDOM);
         $("#over").show();
         $("#layout").show();
+		$("body").css('overflow','hidden');
     },
 
     hideLoading: function() {
         $("#over").hide();
         $("#layout").hide();
+		$("body").css('overflow','auto');
     },
 
     /*
