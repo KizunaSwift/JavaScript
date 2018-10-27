@@ -60,13 +60,21 @@ var vibe = {
     },
 
     /*
-     * 数组排序 - 数字 
+     * 数组排序 - 数字
+     * array.from(new Set(arr))
      */
     numberSort: function(arr) {
         function sortNumber(a, b) {
             return a - b;
         }
         return arr.sort(sortNumber);
+    },
+	
+    /*
+     * 1-100 random
+     */
+    randomNum: function(m, n) {
+    	return Math.floor(Math.random() * (m - n) + n);
     },
 
     /*
