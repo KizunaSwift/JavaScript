@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>日期固定到顶部</title>
+  <style type="text/css">
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  .box,
+  .top-fixed {
+    height: 50px;
+    background: #ccc;
+    width: 100%;
+    display: table;
+  }
+
+  .top-fixed {
+    position: fixed;
+    top: 0;
+    display: none;
+    background: #666;
+  }
+
+  .box.fixed {
+    position: fixed;
+    top: 0;
+    margin: 0;
+    padding: 0;
+  }
+
+  .box .date,
+  .top-fixed .date {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+  }
+  </style>
+</head>
+
+<body>
+  <div class="top-fixed">
+    <div class="date"></div>
+  </div>
+  <br /><br /><br />
+  <div class="box">
+    <div class="date">2019-01-31</div>
+  </div>
+  <br />
+  <br />
+  <br />
+  <div class="box">
+    <div class="date">2019-02-01</div>
+  </div>
+  <br />
+  <br />
+  <br />
+  <div class="box">
+    <div class="date">2019-02-02</div>
+  </div>
+  <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+  <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+  <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+  <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+  <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+  <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+  <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+  <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+  <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+  <script type="text/javascript">
+  // let _offsetTop = document.querySelector('.box').offsetTop;
+  window.onscroll = () => {
+    /*let _scrollTop = document.documentElement.scrollTop;
+    console.log(_offsetTop, _scrollTop, _offsetTop - _scrollTop);
+    if (_scrollTop > _offsetTop) {
+      document.querySelector('.box').classList.add('fixed');
+    } else {
+      document.querySelector('.box').classList.remove('fixed');
+    }*/
+    let allbox = document.querySelectorAll('.box');
+    let _scrollTop = document.documentElement.scrollTop;
+    for (let i = 0; i < allbox.length; i++) {
+      let _offsetTop = allbox[i].offsetTop;
+      if (_scrollTop >= _offsetTop) {
+        document.querySelector('.top-fixed').style.display = 'table';
+        document.querySelector('.top-fixed').children[0].innerText = allbox[i].innerText;
+      }
+    }
+    if (allbox[0].offsetTop - _scrollTop > 50) { // top-fixed 高度
+      document.querySelector('.top-fixed').style.display = 'none';
+    }
+  };
+  </script>
+</body>
+
+</html>

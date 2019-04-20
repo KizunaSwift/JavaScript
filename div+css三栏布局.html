@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style type="text/css">
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    .div1,
+    .div2 {
+        height: 100px;
+    }
+
+    .div1 {
+        background: #ccc;
+        margin-bottom: 10px;
+    }
+
+    .div2 {
+        background: #666;
+        margin-top: 10px;
+    }
+
+    html,
+    body {
+        margin: 0px;
+        width: 100%;
+    }
+
+    #left,
+    #right {
+        width: 200px;
+        height: 200px;
+        background-color: #ffe6b8;
+        position: absolute;
+        /* top: 120px; */
+    }
+
+    #left {
+        left: 0px;
+    }
+
+    #right {
+        right: 0px;
+    }
+
+    #center {
+        margin: 2px 210px;
+        background-color: #eee;
+        height: 200px;
+    }
+
+    #left_self,
+    #right_self {
+        width: 200px;
+        height: 200px;
+        background-color: #ffe6b8
+    }
+
+    #left_self {
+        float: left;
+    }
+
+    #right_self {
+        float: right;
+    }
+
+    #center_self {
+        margin: 0 210px;
+        height: 200px;
+        background-color: #a0b3d6
+    }
+    </style>
+</head>
+
+<body>
+    <!-- <a id="target" href="#">点一下</a> -->
+    <!-- <div class="div1"></div>
+    <div class="div2"></div>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    	console.log($('div.div1'));
+    </script> -->
+    <div id="left">我是左边</div>
+    <div id="right">我是右边</div>
+    <div id="center">我是中间</div>
+    
+    <div id="left_self">我是左边</div>
+    <div id="right_self">我是右边</div>
+    <div id="center_self">我是中间</div>
+</body>
+<!-- <script type="text/javascript">
+var targetBox = document.getElementById("target");
+
+targetBox.onpointerdown = handleDown;
+
+function handleDown(evt) {
+  var action;
+ 
+  switch(evt.pointerType) {
+    case "mouse":
+      action = "clicking";
+      break;
+    case "pen":
+      action = "tapping";
+      break;
+    case "touch":
+      action = "touching";
+      break;
+    default:
+      action = "interacting with";
+      break;
+  }
+ 
+  targetBox.innerHTML = "<strong>Thanks for " + action + " me!</strong>";
+  evt.preventDefault();
+}
+</script> -->
+
+</html>
