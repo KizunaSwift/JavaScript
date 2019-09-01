@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge，chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Waterfall</title>
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+  <style type="text/css" media="screen">
+  /* http://screensiz.es */
+  @media screen and (min-width: 320px) and (max-width: 479px) {}
+
+  @media screen and (min-width: 480px) and (max-width: 639px) {}
+
+  @media screen and (min-width: 640px) and (max-width: 767px) {}
+
+  @media screen and (min-width: 768px) and (max-width: 1023px) {}
+
+  @media screen and (min-width: 1024px) and (max-width: 1079px) {}
+
+  @media screen and (min-width: 1080px) and (max-width: 1279px) {}
+
+  @media screen and (min-width: 1280px) and (max-width: 1365px) {}
+
+  @media screen and (min-width: 1366px) and (max-width: 1679px) {}
+
+  @media screen and (min-width: 1680px) {}
+
+  /* 竖屏 */
+  @media screen and (orientation: portrait) {}
+
+  /* 横屏 */
+  @media screen and (orientation: landscape) {}
+
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  #list li {
+    list-style: none;
+    float: left;
+  }
+
+  #list li img {
+    display: block;
+    width: 100%;
+  }
+  </style>
+</head>
+
+<body>
+  <ul class="list" id="list"></ul>
+  <script type="text/javascript">
+  alert(screen.width);
+  alert(screen.availWidth);
+  let images = [
+    { url: 'https://kizunaai.fun/wp-content/uploads/2019/08/3D689E9B-4B37-4289-8C03-3D536B6C1494-498x1024.png' },
+    { url: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=625667076,2680546944&fm=26&gp=0.jpg' },
+    { url: 'http://img5.imgtn.bdimg.com/it/u=2018579695,196237912&fm=26&gp=0.jpg' },
+    { url: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1155343148,2913901433&fm=26&gp=0.jpg' },
+    { url: 'http://img3.imgtn.bdimg.com/it/u=18670326,1474952085&fm=26&gp=0.jpg' },
+    { url: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2547009022,1123748147&fm=26&gp=0.jpg' },
+    { url: 'http://img2.imgtn.bdimg.com/it/u=1740163346,657757692&fm=26&gp=0.jpg' },
+    { url: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1565333691,3888213971&fm=26&gp=0.jpg' },
+    { url: 'http://img2.imgtn.bdimg.com/it/u=475825380,2098720274&fm=26&gp=0.jpg' }
+  ];
+
+  let columnIndex = 0;
+
+  waterfall(3);
+
+  function waterfall(columnNum) {
+    setImgIndex(columnNum);
+    setColumnDom(columnNum);
+    setImgDom();
+  }
+
+  function setImgIndex(columnNum) {
+    images.forEach(img => {
+      img.index = columnIndex++;
+      if (columnIndex == columnNum) columnIndex = 0;
+    });
+  }
+
+  function setColumnDom(columnNum) {
+    let html = '';
+    for (let i = 0; i < columnNum; i++) {
+      html += '<li style="width: ' + 100 / columnNum + '%;"></li>';
+    }
+    document.getElementById('list').innerHTML = html;
+  }
+
+  function setImgDom() {
+    images.forEach(img => {
+      let imgDom = document.createElement('img');
+      imgDom.src = img.url;
+      document.getElementById('list').children[img.index].appendChild(imgDom);
+    });
+  }
+  </script>
+</body>
+
+</html>
