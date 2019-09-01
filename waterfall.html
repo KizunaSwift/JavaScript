@@ -22,8 +22,6 @@
 
   @media screen and (min-width: 1024px) and (max-width: 1079px) {}
 
-  @media screen and (min-width: 1080px) and (max-width: 1279px) {}
-
   @media screen and (min-width: 1280px) and (max-width: 1365px) {}
 
   @media screen and (min-width: 1366px) and (max-width: 1679px) {}
@@ -56,8 +54,7 @@
 <body>
   <ul class="list" id="list"></ul>
   <script type="text/javascript">
-  alert(screen.width);
-  alert(screen.availWidth);
+  alert(devicePixelRatio);
   let images = [
     { url: 'https://kizunaai.fun/wp-content/uploads/2019/08/3D689E9B-4B37-4289-8C03-3D536B6C1494-498x1024.png' },
     { url: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=625667076,2680546944&fm=26&gp=0.jpg' },
