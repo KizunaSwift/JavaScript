@@ -1,0 +1,49 @@
+<html>
+
+<head>
+  <title></title>
+</head>
+
+<body>
+  <script type="text/javascript">
+  function copy(arr) {
+    let obj = arr.constructor == Array ? [] : {};
+    // let obj = arr instanceof Array ? [] : {};
+    for (let item in arr) {
+      if (typeof arr[item] === "object") {
+        obj[item] = copy(arr[item]);
+      } else {
+        obj[item] = arr[item];
+      }
+    }
+    return obj;
+  }
+  let obj = {
+    a: 1,
+    b: 2,
+    c: {
+      d: 1,
+      e: [3, 4, 5]
+    }
+  };
+  let copyObj = copy(obj);
+  obj.c.e.push(7);
+  console.log('e push:7');
+  console.log('old....', obj);
+  console.log('copyObj....', copyObj);
+  let arr = [{
+    name: 'tom',
+    age: 1
+  }, {
+    name: 'Jerry',
+    age: 2
+  }];
+  let copyArr = copy(arr);
+  arr[0].age = 3;
+  console.log('change arr0 age 3');
+  console.log('old....', arr);
+  console.log('copyArr....', copyArr);
+  </script>
+</body>
+
+</html>

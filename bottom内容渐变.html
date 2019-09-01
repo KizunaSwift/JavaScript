@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>linear-gradient-pointer-events</title>
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+  <style>
+    * {
+    box-sizing: border-box;
+  }
+
+  #wrap {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    border: 1px solid #999;
+    background: #fff;
+    border-radius: 4px;
+  }
+
+  #content {
+    height: 100%;
+    padding: 5px;
+    overflow: auto;
+  }
+
+  #wrap::after {
+    content: '';
+    width: 100%;
+    height: 130px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    pointer-events: none;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+  }
+  </style>
+</head>
+
+<body>
+  <div id="wrap">
+    <div id="content">
+      <p>线性渐变 - 可点击选择内容</p>
+      <p>线性渐变 - 可点击选择内容</p>
+      <p>线性渐变 - 可点击选择内容</p>
+      <p>线性渐变 - 可点击选择内容</p>
+      <p>线性渐变 - 可点击选择内容</p>
+      <p>线性渐变 - 可点击选择内容</p>
+      <p>线性渐变 - 可点击选择内容</p>
+      <p>线性渐变 - 可点击选择内容</p>
+      <p>线性渐变 - 可点击选择内容</p>
+      <p>线性渐变 - 可点击选择内容</p>
+      <p>线性渐变 - 可点击选择内容</p>
+      <p>线性渐变 - 可点击选择内容</p>
+      <p>线性渐变 - 可点击选择内容线性渐变 - 可点击选择内容线性渐变 - 可点击选择内容线性渐变 - 可点击选择内容线性渐变 - 可点击选择内容线性渐变 - 可点击选择内容线性渐变 - 可点击选择内容线性渐变 - 可点击选择内容线性渐变 - 可点击选择内容线性渐变 - 可点击选择内容</p>
+    </div>
+  </div>
+  <script type="text/javascript">
+  $("p:first").dblclick(function() {
+  	let txt = window.getSelection ? window.getSelection() : document.selection.createRange().text;
+    alert(txt.toString());
+  });
+  </script>
+</body>
+
+</html>
