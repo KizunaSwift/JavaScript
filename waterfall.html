@@ -3,15 +3,15 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=Edge，chrome=1">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="version" content="0.3.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+  <meta name="version" content="1.0.2">
   <title>Waterfall</title>
   <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
   <![endif]-->
-  <style type="text/css" media="screen">
+  <style type="text/css">
   /* http://screensiz.es */
   @media screen and (min-width: 320px) and (max-width: 479px) {}
 
@@ -54,6 +54,12 @@
   #list li img {
     display: block;
     width: 100%;
+    cursor: pointer;
+  }
+
+  #list li img:hover {
+    transform: scale(1.2);
+    transition: all .3s ease;
   }
   </style>
 </head>
@@ -61,49 +67,39 @@
 <body>
   <ul class="list" id="list"></ul>
   <script type="text/javascript">
-  // 全局传入可分页
-  let images = [
+  /*let list = [
     { url: 'https://kizunaai.fun/wp-content/uploads/2019/08/3D689E9B-4B37-4289-8C03-3D536B6C1494-498x1024.png' },
     { url: 'http://cued.xunlei.com/demos/publ/img/P_101.jpg' },
     { url: 'http://cued.xunlei.com/demos/publ/img/P_102.jpg' },
     { url: 'http://cued.xunlei.com/demos/publ/img/P_103.jpg' },
-    { url: 'http://cued.xunlei.com/demos/publ/img/P_.jpg' },
-    { url: 'http://cued.xunlei.com/demos/publ/img/P_105.jpg' },
-    { url: 'http://cued.xunlei.com/demos/publ/img/P_106.jpg' },
-    { url: 'http://cued.xunlei.com/demos/publ/img/P_107.jpg' },
-    { url: 'http://cued.xunlei.com/demos/publ/img/P_108.jpg' },
-    { url: 'http://cued.xunlei.com/demos/publ/img/P_109.jpg' },
-    { url: 'http://cued.xunlei.com/demos/publ/img/P_110.jpg' },
-    { url: 'http://cued.xunlei.com/demos/publ/img/P_101.jpg' },
-    { url: 'http://cued.xunlei.com/demos/publ/img/P_102.jpg' },
-    { url: 'http://cued.xunlei.com/demos/publ/img/P_103.jpg' },
-    { url: 'http://cued.xunlei.com/demos/publ/img/P_.jpg' },
     { url: 'http://cued.xunlei.com/demos/publ/img/P_105.jpg' },
     { url: 'http://cued.xunlei.com/demos/publ/img/P_106.jpg' },
     { url: 'http://cued.xunlei.com/demos/publ/img/P_107.jpg' },
     { url: 'http://cued.xunlei.com/demos/publ/img/P_108.jpg' },
     { url: 'http://cued.xunlei.com/demos/publ/img/P_109.jpg' },
     { url: 'http://cued.xunlei.com/demos/publ/img/P_110.jpg' }
-  ];
+  ];*/
+  waterfall(list);
+  window.onresize = function() { waterfall(list); };
 
-  waterfall(images);
-  window.onresize = function() { waterfall(images); };
-
-  function waterfall(images) {
+  function waterfall(list = []) {
+    document.getElementById('list').innerHTML = '';
     let columnNum = 2;
     if (480 <= document.body.clientWidth && document.body.clientWidth < 639) columnNum = 3;
     if (640 <= document.body.clientWidth && document.body.clientWidth < 767) columnNum = 5;
     if (768 <= document.body.clientWidth && document.body.clientWidth < 959) columnNum = 5;
     if (960 <= document.body.clientWidth && document.body.clientWidth < 1023) columnNum = 6;
     if (1024 <= document.body.clientWidth && document.body.clientWidth < 1280) columnNum = 6;
-    if (1280 <= document.body.clientWidth && document.body.clientWidth < 1679) columnNum = 8;
-    if (document.body.clientWidth > 1680) columnNum = parseInt(document.body.clientWidth / 340);
-    
-    setColumnDom(columnNum);
-    setImageDom(images, columnNum);
+    if (1280 <= document.body.clientWidth && document.body.clientWidth < 1365) columnNum = 8;
+    if (1366 <= document.body.clientWidth && document.body.clientWidth < 1679) columnNum = 8;
+    if (document.body.clientWidth >= 1680) columnNum = parseInt(document.body.clientWidth / 340);
+
+    setColumnDom(list, columnNum);
+    setImageDom(list, columnNum);
   }
 
-  function setColumnDom(columnNum) {
+  function setColumnDom(list, columnNum) {
+    if (!list.length) return;
     let html = '';
     for (let i = 0; i < columnNum; i++) {
       html += '<li style="width: ' + 100 / columnNum + '%;"></li>';
