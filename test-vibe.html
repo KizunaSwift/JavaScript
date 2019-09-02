@@ -2,155 +2,155 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <title>summer vibe</title>
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-    <script src="https://cdn.bootcss.com/jquery/3.2.0/jquery.min.js"></script>
-    <script src="summer-vibe.js"></script>
+  <meta charset="UTF-8" />
+  <title>summer vibe</title>
+  <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  <script src="https://cdn.bootcss.com/jquery/3.2.0/jquery.min.js"></script>
+  <script src="./utils.js"></script>
 </head>
 
 <body>
-    <div class="container-fluid" style="padding: 30px 15px;">
-        <div class="list-group">
-            <a href="#" class="list-group-item active">
-                <h4 class="list-group-item-heading">获取当前的日期时间 格式“yyyy-MM-dd HH:MM:SS”</h4>
-                <p class="list-group-item-text"></p>
-            </a>
-        </div>
-        <div class="list-group">
-            <a href="#" class="list-group-item active">
-                <h4 class="list-group-item-heading">将数值四舍五入(保留2位小数)后格式化成金额形式</h4>
-                <p class="list-group-item-text"></p>
-            </a>
-        </div>
-        <div class="list-group">
-            <a href="#" class="list-group-item active">
-                <h4 class="list-group-item-heading">数组去重</h4>
-                <p class="list-group-item-text"></p>
-            </a>
-        </div>
-        <div class="list-group" style="display: none;">
-            <a href="#" class="list-group-item active">
-                <h4 class="list-group-item-heading"></h4>
-                <p class="list-group-item-text"></p>
-            </a>
-        </div>
-        <div class="list-group">
-            <a href="#" class="list-group-item active">
-                <h4 class="list-group-item-heading">数组排序 - 数字</h4>
-                <p class="list-group-item-text"></p>
-            </a>
-        </div>
-        <div class="list-group">
-            <a href="#" class="list-group-item active">
-                <h4 class="list-group-item-heading">Loading...</h4>
-                <button class="btn btn-default btn-info showLoading">showLoading</button>
-            </a>
-        </div>
-        <div class="list-group">
-            <a href="#" class="list-group-item active">
-                <h4 class="list-group-item-heading">自定义alert</h4>
-                <button class="btn btn-default btn-info selfAlert">alert</button>
-            </a>
-        </div>
-        <div class="list-group">
-            <a href="#" class="list-group-item active">
-                <h4 class="list-group-item-heading">倒计时</h4>
-                <button id="countdown" class="btn btn-default btn-info">倒计时60s</button>
-            </a>
-        </div>
-        <div class="list-group">
-            <a href="#" class="list-group-item active">
-                <h4 class="list-group-item-heading">闹钟</h4>
-                <p id="clock" class="list-group-item-text"></p>
-            </a>
-        </div>
-        <div class="list-group" style="background-color: #337ab7;border-color: #337ab7;border-radius: 4px;padding: 10px 15px">
-            <h4 class="list-group-item-heading">验证手机号</h4>
-            <input class="mobile" type="text" placeholder="输入手机号" />
-            <button id="mobileBTN" class="btn btn-default btn-info">check</button>
-        </div>
-        <div class="list-group" style="background-color: #337ab7;border-color: #337ab7;border-radius: 4px;padding: 10px 15px">
-            <h4 class="list-group-item-heading">验证邮箱</h4>
-            <input class="email" type="text" placeholder="输入邮箱" />
-            <button id="emailBTN" class="btn btn-default btn-info">check</button>
-        </div>
-        <div class="list-group" style="background-color: #337ab7;border-color: #337ab7;border-radius: 4px;padding: 10px 15px">
-            <h4 class="list-group-item-heading">验证身份证</h4>
-            <input class="idcard" type="text" placeholder="输入身份证" />
-            <button id="idcardBTN" class="btn btn-default btn-info">check</button>
-        </div>
-        <div class="list-group" style="background-color: #337ab7;border-color: #337ab7;border-radius: 4px;padding: 10px 15px">
-            <h4 class="list-group-item-heading">验证表情</h4>
-            <input class="emoji" type="text" placeholder="输入表情" />
-            <button id="emojiBTN" class="btn btn-default btn-info">check</button>
-        </div>
+  <div class="container-fluid" style="padding: 30px 15px;">
+    <div class="list-group">
+      <a href="#" class="list-group-item active">
+        <h4 class="list-group-item-heading">获取当前的日期时间 格式“yyyy-MM-dd HH:MM:SS”</h4>
+        <p class="list-group-item-text"></p>
+      </a>
     </div>
-    <script type="text/javascript">
-    $(function() {
-        $('.list-group p').eq(0).text(vibe.dateFormat(new Date(), 'yyyy-MM-dd'));
-        $('.list-group p').eq(1).text(vibe.formatCurrency('123456 .7 8 9 9 9'));
-        $('.list-group p').eq(2).text(vibe.removeDuplicate([1, 2, 3, 3, 5, 5, 13]));
-        $('.list-group p').eq(3).text(vibe.numberSort(['10', '5', '40', '25', '1000', '1']));
+    <div class="list-group">
+      <a href="#" class="list-group-item active">
+        <h4 class="list-group-item-heading">将数值四舍五入(保留2位小数)后格式化成金额形式</h4>
+        <p class="list-group-item-text"></p>
+      </a>
+    </div>
+    <div class="list-group">
+      <a href="#" class="list-group-item active">
+        <h4 class="list-group-item-heading">数组去重</h4>
+        <p class="list-group-item-text"></p>
+      </a>
+    </div>
+    <div class="list-group" style="display: none;">
+      <a href="#" class="list-group-item active">
+        <h4 class="list-group-item-heading"></h4>
+        <p class="list-group-item-text"></p>
+      </a>
+    </div>
+    <div class="list-group">
+      <a href="#" class="list-group-item active">
+        <h4 class="list-group-item-heading">数组排序 - 数字</h4>
+        <p class="list-group-item-text"></p>
+      </a>
+    </div>
+    <div class="list-group">
+      <a href="#" class="list-group-item active">
+        <h4 class="list-group-item-heading">Loading...</h4>
+        <button class="btn btn-default btn-info showLoading">showLoading</button>
+      </a>
+    </div>
+    <div class="list-group">
+      <a href="#" class="list-group-item active">
+        <h4 class="list-group-item-heading">自定义alert</h4>
+        <button class="btn btn-default btn-info selfAlert">alert</button>
+      </a>
+    </div>
+    <div class="list-group">
+      <a href="#" class="list-group-item active">
+        <h4 class="list-group-item-heading">倒计时</h4>
+        <button id="countdown" class="btn btn-default btn-info">倒计时60s</button>
+      </a>
+    </div>
+    <div class="list-group">
+      <a href="#" class="list-group-item active">
+        <h4 class="list-group-item-heading">闹钟</h4>
+        <p id="clock" class="list-group-item-text"></p>
+      </a>
+    </div>
+    <div class="list-group" style="background-color: #337ab7;border-color: #337ab7;border-radius: 4px;padding: 10px 15px">
+      <h4 class="list-group-item-heading">验证手机号</h4>
+      <input class="mobile" type="text" placeholder="输入手机号" />
+      <button id="mobileBTN" class="btn btn-default btn-info">check</button>
+    </div>
+    <div class="list-group" style="background-color: #337ab7;border-color: #337ab7;border-radius: 4px;padding: 10px 15px">
+      <h4 class="list-group-item-heading">验证邮箱</h4>
+      <input class="email" type="text" placeholder="输入邮箱" />
+      <button id="emailBTN" class="btn btn-default btn-info">check</button>
+    </div>
+    <div class="list-group" style="background-color: #337ab7;border-color: #337ab7;border-radius: 4px;padding: 10px 15px">
+      <h4 class="list-group-item-heading">验证身份证</h4>
+      <input class="idcard" type="text" placeholder="输入身份证" />
+      <button id="idcardBTN" class="btn btn-default btn-info">check</button>
+    </div>
+    <div class="list-group" style="background-color: #337ab7;border-color: #337ab7;border-radius: 4px;padding: 10px 15px">
+      <h4 class="list-group-item-heading">验证表情</h4>
+      <input class="emoji" type="text" placeholder="输入表情" />
+      <button id="emojiBTN" class="btn btn-default btn-info">check</button>
+    </div>
+  </div>
+  <script type="text/javascript">
+  $(function() {
+    $('.list-group p').eq(0).text(vibe.dateFormat(new Date(), 'yyyy-MM-dd'));
+    $('.list-group p').eq(1).text(vibe.formatCurrency('123456 .7 8 9 9 9'));
+    $('.list-group p').eq(2).text(vibe.removeDuplicate([1, 2, 3, 3, 5, 5, 13]));
+    $('.list-group p').eq(3).text(vibe.numberSort(['10', '5', '40', '25', '1000', '1']));
 
-        $('.showLoading').click(function() {
-            vibe.showLoading();
-            setTimeout(function() {
-                vibe.hideLoading();
-            }, 2000);
-        });
-
-        $('.selfAlert').click(function() {
-            vibe.alert('这是一个自定义弹出提示');
-        });
-
-        $('#countdown').click(function() {
-            vibe.countDown('#countdown');
-        });
-
-        $('.list-group p').eq(5).text(vibe.clock('#clock'));
-
-        $('#mobileBTN').click(function() {
-            var mobile = $('.mobile').val();
-            if (vibe.isMobile(mobile)) {
-                vibe.alert('手机号正确');
-            } else {
-                vibe.alert('手机号不正确');
-            }
-        });
-
-        $('#emailBTN').click(function() {
-            var email = $('.email').val();
-            if (vibe.isEmail(email)) {
-                vibe.alert('邮箱正确');
-            } else {
-                vibe.alert('邮箱不正确');
-            }
-        });
-
-        $('#idcardBTN').click(function() {
-            var idcard = $('.idcard').val();
-            if (vibe.isIDCard(idcard)) {
-                vibe.alert('身份证正确');
-            } else {
-                vibe.alert('身份证不正确');
-            }
-        });
-
-        $('#emojiBTN').click(function() {
-            var emoji = $('.emoji').val();
-            if (vibe.isEmoji(emoji)) {
-                vibe.alert('emoji表情');
-            } else {
-                vibe.alert('非表情');
-            }
-        });
-
-        vibe.ajaxRequest('http://api.asilu.com/weather/', {}, function(res) {
-            console.log(JSON.stringify(res));
-        });
+    $('.showLoading').click(function() {
+      vibe.showLoading();
+      setTimeout(function() {
+        vibe.hideLoading();
+      }, 2000);
     });
-    </script>
+
+    $('.selfAlert').click(function() {
+      vibe.alert('这是一个自定义弹出提示');
+    });
+
+    $('#countdown').click(function() {
+      vibe.countDown('#countdown');
+    });
+
+    $('.list-group p').eq(5).text(vibe.clock('#clock'));
+
+    $('#mobileBTN').click(function() {
+      var mobile = $('.mobile').val();
+      if (vibe.isMobile(mobile)) {
+        vibe.alert('手机号正确');
+      } else {
+        vibe.alert('手机号不正确');
+      }
+    });
+
+    $('#emailBTN').click(function() {
+      var email = $('.email').val();
+      if (vibe.isEmail(email)) {
+        vibe.alert('邮箱正确');
+      } else {
+        vibe.alert('邮箱不正确');
+      }
+    });
+
+    $('#idcardBTN').click(function() {
+      var idcard = $('.idcard').val();
+      if (vibe.isIDCard(idcard)) {
+        vibe.alert('身份证正确');
+      } else {
+        vibe.alert('身份证不正确');
+      }
+    });
+
+    $('#emojiBTN').click(function() {
+      var emoji = $('.emoji').val();
+      if (vibe.isEmoji(emoji)) {
+        vibe.alert('emoji表情');
+      } else {
+        vibe.alert('非表情');
+      }
+    });
+
+    vibe.ajaxRequest('http://api.asilu.com/weather/', {}, function(res) {
+      console.log(JSON.stringify(res));
+    });
+  });
+  </script>
 </body>
 
 </html>

@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
   <meta name="version" content="1.0.2">
   <title>Waterfall</title>
@@ -42,7 +42,7 @@
     padding: 0;
   }
 
-  #list: {
+  #list {
     display: inline-block;
   }
 
@@ -65,9 +65,9 @@
 </head>
 
 <body>
-  <ul class="list" id="list"></ul>
+  <ul id="list"></ul>
   <script type="text/javascript">
-  /*let list = [
+  let list = [
     { url: 'https://kizunaai.fun/wp-content/uploads/2019/08/3D689E9B-4B37-4289-8C03-3D536B6C1494-498x1024.png' },
     { url: 'http://cued.xunlei.com/demos/publ/img/P_101.jpg' },
     { url: 'http://cued.xunlei.com/demos/publ/img/P_102.jpg' },
@@ -78,7 +78,7 @@
     { url: 'http://cued.xunlei.com/demos/publ/img/P_108.jpg' },
     { url: 'http://cued.xunlei.com/demos/publ/img/P_109.jpg' },
     { url: 'http://cued.xunlei.com/demos/publ/img/P_110.jpg' }
-  ];*/
+  ];
   waterfall(list);
   window.onresize = function() { waterfall(list); };
 
