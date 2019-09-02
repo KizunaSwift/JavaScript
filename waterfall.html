@@ -101,10 +101,10 @@
 
   function setImgDom(images, columnNum) {
     images.forEach(img => {
-      let img = document.createElement('img');
-      img.src = img.url;
+      let imgDom = document.createElement('img');
+      imgDom.src = img.url;
       let arr = [];
-      img.onload = function() {
+      imgDom.onload = function() {
         arr = [];
         for (let i = 0; i < columnNum; i++) {
           let height = document.getElementById('list').children[i].clientHeight;
@@ -112,7 +112,7 @@
         }
         arr.sort((a, b) => { return a.height - b.height; });
         let minIndex = arr[0].index;
-        document.getElementById('list').children[minIndex].appendChild(img);
+        document.getElementById('list').children[minIndex].appendChild(imgDom);
       };
     });
   }
