@@ -41,6 +41,10 @@
     padding: 0;
   }
 
+  #list: {
+    display: inline-block;
+  }
+
   #list li {
     list-style: none;
     float: left;
@@ -56,23 +60,16 @@
 <body>
   <ul class="list" id="list"></ul>
   <script type="text/javascript">
-  let images = [
-    { url: 'https://kizunaai.fun/wp-content/uploads/2019/08/3D689E9B-4B37-4289-8C03-3D536B6C1494-498x1024.png' },
-    { url: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=625667076,2680546944&fm=26&gp=0.jpg' },
-    { url: 'http://img5.imgtn.bdimg.com/it/u=2018579695,196237912&fm=26&gp=0.jpg' },
-    { url: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1155343148,2913901433&fm=26&gp=0.jpg' },
-    { url: 'http://img3.imgtn.bdimg.com/it/u=18670326,1474952085&fm=26&gp=0.jpg' },
-    { url: 'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2547009022,1123748147&fm=26&gp=0.jpg' },
-    { url: 'http://img2.imgtn.bdimg.com/it/u=1740163346,657757692&fm=26&gp=0.jpg' },
-    { url: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1565333691,3888213971&fm=26&gp=0.jpg' },
-    { url: 'http://img2.imgtn.bdimg.com/it/u=475825380,2098720274&fm=26&gp=0.jpg' }
-  ];
-
+  waterfall();
   window.onresize = function() { waterfall(); };
 
-  waterfall();
-
   function waterfall() {
+    let images = [
+      { url: 'https://kizunaai.fun/wp-content/uploads/2019/08/3D689E9B-4B37-4289-8C03-3D536B6C1494-498x1024.png' },
+      { url: 'http://cued.xunlei.com/demos/publ/img/P101.jpg' },
+      { url: 'http://cued.xunlei.com/demos/publ/img/P102.jpg' },
+      { url: 'http://cued.xunlei.com/demos/publ/img/P103.jpg' }
+    ];
     let columnNum = 3;
     if (320 <= document.body.clientWidth && document.body.clientWidth < 479) columnNum = 3;
     if (480 <= document.body.clientWidth && document.body.clientWidth < 639) columnNum = 4;
@@ -82,12 +79,12 @@
     if (1024 <= document.body.clientWidth && document.body.clientWidth < 1280) columnNum = 6;
     if (1280 <= document.body.clientWidth && document.body.clientWidth < 1679) columnNum = 8;
     if (document.body.clientWidth > 1680) columnNum = parseInt(document.body.clientWidth / 340);
-    setImgIndex(columnNum);
+    // setImgIndex(images, columnNum);
     setColumnDom(columnNum);
-    setImgDom();
+    setImgDom(images, columnNum);
   }
 
-  function setImgIndex(columnNum) {
+  function setImgIndex(images, columnNum) {
     let columnIndex = 0;
     images.forEach(img => {
       img.index = columnIndex++;
@@ -103,11 +100,21 @@
     document.getElementById('list').innerHTML = html;
   }
 
-  function setImgDom() {
+  function setImgDom(images, columnNum) {
     images.forEach(img => {
-      let imgDom = document.createElement('img');
-      imgDom.src = img.url;
-      document.getElementById('list').children[img.index].appendChild(imgDom);
+      let img = document.createElement('img');
+      img.src = img.url;
+      let arr = [];
+      img.onload = function() {
+        arr = [];
+        for (let i = 0; i < columnNum; i++) {
+          let height = document.getElementById('list').children[i].clientHeight;
+          arr.push({ height: height, index: i });
+        }
+        arr.sort((a, b) => { return a.height - b.height; });
+        let minIndex = arr[0].index;
+        document.getElementById('list').children[minIndex].appendChild(img);
+      };
     });
   }
   </script>
