@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge，chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="version" content="0.3.0">
   <title>Waterfall</title>
   <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -60,22 +61,25 @@
 <body>
   <ul class="list" id="list"></ul>
   <script type="text/javascript">
-  waterfall();
-  window.onresize = function() { waterfall(); };
+  // 全局传入可分页
+  let images = [
+    { url: 'https://kizunaai.fun/wp-content/uploads/2019/08/3D689E9B-4B37-4289-8C03-3D536B6C1494-498x1024.png' },
+    { url: 'http://cued.xunlei.com/demos/publ/img/P_101.jpg' },
+    { url: 'http://cued.xunlei.com/demos/publ/img/P_102.jpg' },
+    { url: 'http://cued.xunlei.com/demos/publ/img/P_103.jpg' },
+    { url: 'http://cued.xunlei.com/demos/publ/img/P_.jpg' },
+    { url: 'http://cued.xunlei.com/demos/publ/img/P_105.jpg' },
+    { url: 'http://cued.xunlei.com/demos/publ/img/P_106.jpg' },
+    { url: 'http://cued.xunlei.com/demos/publ/img/P_107.jpg' },
+    { url: 'http://cued.xunlei.com/demos/publ/img/P_108.jpg' },
+    { url: 'http://cued.xunlei.com/demos/publ/img/P_109.jpg' },
+    { url: 'http://cued.xunlei.com/demos/publ/img/P_110.jpg' }
+  ];
 
-  function waterfall() {
-    let images = [
-      { url: 'https://kizunaai.fun/wp-content/uploads/2019/08/3D689E9B-4B37-4289-8C03-3D536B6C1494-498x1024.png' },
-      { url: 'http://cued.xunlei.com/demos/publ/img/P_101.jpg' },
-      { url: 'http://cued.xunlei.com/demos/publ/img/P_102.jpg' },
-      { url: 'http://cued.xunlei.com/demos/publ/img/P_103.jpg' },
-      { url: 'http://cued.xunlei.com/demos/publ/img/P_105.jpg' },
-      { url: 'http://cued.xunlei.com/demos/publ/img/P_106.jpg' },
-      { url: 'http://cued.xunlei.com/demos/publ/img/P_107.jpg' },
-      { url: 'http://cued.xunlei.com/demos/publ/img/P_108.jpg' },
-      { url: 'http://cued.xunlei.com/demos/publ/img/P_109.jpg' },
-      { url: 'http://cued.xunlei.com/demos/publ/img/P_110.jpg' }
-    ];
+  waterfall(images);
+  window.onresize = function() { waterfall(images); };
+
+  function waterfall(images) {
     let columnNum = 2;
     if (480 <= document.body.clientWidth && document.body.clientWidth < 639) columnNum = 3;
     if (640 <= document.body.clientWidth && document.body.clientWidth < 767) columnNum = 5;
@@ -84,17 +88,9 @@
     if (1024 <= document.body.clientWidth && document.body.clientWidth < 1280) columnNum = 6;
     if (1280 <= document.body.clientWidth && document.body.clientWidth < 1679) columnNum = 8;
     if (document.body.clientWidth > 1680) columnNum = parseInt(document.body.clientWidth / 340);
-    // setImgIndex(images, columnNum);
+    
     setColumnDom(columnNum);
-    setImgDom(images, columnNum);
-  }
-
-  function setImgIndex(list, columnNum) {
-    let columnIndex = 0;
-    list.forEach(item => {
-      item.index = columnIndex++;
-      if (columnIndex == columnNum) columnIndex = 0;
-    });
+    setImageDom(images, columnNum);
   }
 
   function setColumnDom(columnNum) {
@@ -105,21 +101,45 @@
     document.getElementById('list').innerHTML = html;
   }
 
-  function setImgDom(list, columnNum) {
-    list.forEach(item => {
-      let img = document.createElement('img');
-      img.src = item.url;
-      let arr = [], minIndex = 0;
-      img.onload = function() {
-        arr = [];
-        for (let i = 0; i < columnNum; i++) {
-          let height = document.getElementById('list').children[i].clientHeight;
-          arr.push({ height: height, index: i });
-        }
-        arr.sort((a, b) => { return a.height - b.height; });
-        minIndex = arr[0].index;
-        document.getElementById('list').children[minIndex].appendChild(img);
-      };
+  function setImageDom(list, columnNum) {
+    if (list.length) renderImage(i = 0, list, columnNum);
+  }
+
+  function renderImage(i, list, columnNum) {
+    handleImageEvent(i, list, columnNum).then(() => {
+      renderImage(++i, list, columnNum);
+    });
+  }
+
+  function renderImage(i, list, columnNum) {
+    return new Promise((resolve, reject) => {
+      if (i < list.length) {
+        let img = document.createElement('img');
+        img.src = list[i].url;
+        img.alt = '404'; // 空不会显示error
+        img.onload = function() {
+          let arr = [];
+          for (let i = 0; i < columnNum; i++) {
+            let height = document.getElementById('list').children[i].clientHeight;
+            arr.push({ height: height, index: i });
+          }
+          arr.sort((a, b) => { return a.height - b.height; });
+          let minIndex = arr[0].index;
+          document.getElementById('list').children[minIndex].appendChild(img);
+          resolve();
+        };
+        img.onerror = function() {
+          let arr = [];
+          for (let i = 0; i < columnNum; i++) {
+            let height = document.getElementById('list').children[i].clientHeight;
+            arr.push({ height: height, index: i });
+          }
+          arr.sort((a, b) => { return a.height - b.height; });
+          let minIndex = arr[0].index;
+          document.getElementById('list').children[minIndex].appendChild(img);
+          resolve();
+        };
+      }
     });
   }
   </script>
