@@ -66,9 +66,15 @@
   function waterfall() {
     let images = [
       { url: 'https://kizunaai.fun/wp-content/uploads/2019/08/3D689E9B-4B37-4289-8C03-3D536B6C1494-498x1024.png' },
-      { url: 'http://cued.xunlei.com/demos/publ/img/P101.jpg' },
-      { url: 'http://cued.xunlei.com/demos/publ/img/P102.jpg' },
-      { url: 'http://cued.xunlei.com/demos/publ/img/P103.jpg' }
+      { url: 'http://cued.xunlei.com/demos/publ/img/P_101.jpg' },
+      { url: 'http://cued.xunlei.com/demos/publ/img/P_102.jpg' },
+      { url: 'http://cued.xunlei.com/demos/publ/img/P_103.jpg' },
+      { url: 'http://cued.xunlei.com/demos/publ/img/P_105.jpg' },
+      { url: 'http://cued.xunlei.com/demos/publ/img/P_106.jpg' },
+      { url: 'http://cued.xunlei.com/demos/publ/img/P_107.jpg' },
+      { url: 'http://cued.xunlei.com/demos/publ/img/P_108.jpg' },
+      { url: 'http://cued.xunlei.com/demos/publ/img/P_109.jpg' },
+      { url: 'http://cued.xunlei.com/demos/publ/img/P_110.jpg' }
     ];
     let columnNum = 2;
     if (480 <= document.body.clientWidth && document.body.clientWidth < 639) columnNum = 3;
@@ -83,10 +89,10 @@
     setImgDom(images, columnNum);
   }
 
-  function setImgIndex(images, columnNum) {
+  function setImgIndex(list, columnNum) {
     let columnIndex = 0;
-    images.forEach(img => {
-      img.index = columnIndex++;
+    list.forEach(item => {
+      item.index = columnIndex++;
       if (columnIndex == columnNum) columnIndex = 0;
     });
   }
@@ -99,20 +105,20 @@
     document.getElementById('list').innerHTML = html;
   }
 
-  function setImgDom(images, columnNum) {
-    images.forEach(img => {
-      let imgDom = document.createElement('img');
-      imgDom.src = img.url;
-      let arr = [];
-      imgDom.onload = function() {
+  function setImgDom(list, columnNum) {
+    list.forEach(item => {
+      let img = document.createElement('img');
+      img.src = item.url;
+      let arr = [], minIndex = 0;
+      img.onload = function() {
         arr = [];
         for (let i = 0; i < columnNum; i++) {
           let height = document.getElementById('list').children[i].clientHeight;
           arr.push({ height: height, index: i });
         }
         arr.sort((a, b) => { return a.height - b.height; });
-        let minIndex = arr[0].index;
-        document.getElementById('list').children[minIndex].appendChild(imgDom);
+        minIndex = arr[0].index;
+        document.getElementById('list').children[minIndex].appendChild(img);
       };
     });
   }
