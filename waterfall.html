@@ -41,34 +41,13 @@
     margin: 0;
     padding: 0;
   }
-
-  #list {
-    display: inline-block;
-  }
-
-  #list li {
-    list-style: none;
-    float: left;
-  }
-
-  #list li img {
-    display: block;
-    width: 100%;
-    cursor: pointer;
-  }
-
-  #list li img:hover {
-    transform: scale(1.2);
-    transition: all .3s ease;
-  }
   </style>
 </head>
 
 <body>
   <ul id="list"></ul>
   <script type="text/javascript">
-  /*let list = [
-    { url: 'https://kizunaai.fun/wp-content/uploads/2019/08/3D689E9B-4B37-4289-8C03-3D536B6C1494-498x1024.png' },
+  let list = [
     { url: 'http://cued.xunlei.com/demos/publ/img/P_101.jpg' },
     { url: 'http://cued.xunlei.com/demos/publ/img/P_102.jpg' },
     { url: 'http://cued.xunlei.com/demos/publ/img/P_103.jpg' },
@@ -77,13 +56,35 @@
     { url: 'http://cued.xunlei.com/demos/publ/img/P_107.jpg' },
     { url: 'http://cued.xunlei.com/demos/publ/img/P_108.jpg' },
     { url: 'http://cued.xunlei.com/demos/publ/img/P_109.jpg' },
-    { url: 'http://cued.xunlei.com/demos/publ/img/P_110.jpg' }
-  ];*/
+    { url: 'http://cued.xunlei.com/demos/publ/img/P_111.jpg' },
+    { url: 'http://cued.xunlei.com/demos/publ/img/P_112.jpg' },
+    { url: 'http://cued.xunlei.com/demos/publ/img/P_113.jpg' },
+    { url: 'http://cued.xunlei.com/demos/publ/img/P_115.jpg' },
+    { url: 'http://cued.xunlei.com/demos/publ/img/P_116.jpg' },
+    { url: 'http://cued.xunlei.com/demos/publ/img/P_117.jpg' },
+    { url: 'http://cued.xunlei.com/demos/publ/img/P_118.jpg' },
+    { url: 'http://cued.xunlei.com/demos/publ/img/P_119.jpg' },
+    { url: 'http://cued.xunlei.com/demos/publ/img/P_121.jpg' },
+    { url: 'http://cued.xunlei.com/demos/publ/img/P_122.jpg' },
+    { url: 'http://cued.xunlei.com/demos/publ/img/P_123.jpg' },
+    { url: 'http://cued.xunlei.com/demos/publ/img/P_125.jpg' }
+  ];
+
+  let timer = null;
+  document.getElementById('list').style.display = 'inline-block';
+  document.getElementById('list').style.width = '100%';
+
   waterfall(list);
-  window.onresize = function() { waterfall(list); };
+  window.onresize = function() {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      waterfall(list);
+    }, 300);
+  };
 
   function waterfall(list = []) {
     document.getElementById('list').innerHTML = '';
+
     let columnNum = 2;
     if (480 <= document.body.clientWidth && document.body.clientWidth < 639) columnNum = 3;
     if (640 <= document.body.clientWidth && document.body.clientWidth < 767) columnNum = 5;
@@ -94,38 +95,46 @@
     if (1366 <= document.body.clientWidth && document.body.clientWidth < 1679) columnNum = 8;
     if (document.body.clientWidth >= 1680) columnNum = parseInt(document.body.clientWidth / 340);
 
-    setColumnDom(list, columnNum);
-    setImageDom(list, columnNum);
+    renderColumnDom(list, columnNum);
   }
 
-  function setColumnDom(list, columnNum) {
+  function renderColumnDom(list, columnNum) {
     if (!list.length) return;
     let html = '';
     for (let i = 0; i < columnNum; i++) {
-      html += '<li style="width: ' + 100 / columnNum + '%;"></li>';
+      html += '<li style="list-style: none;float: left;width: ' + 100 / columnNum + '%;"></li>';
     }
     document.getElementById('list').innerHTML = html;
+    renderImages(i = 0, list, columnNum);
   }
 
-  function setImageDom(list, columnNum) {
-    if (list.length) renderImage(i = 0, list, columnNum);
-  }
-
-  function renderImage(i, list, columnNum) {
+  function renderImages(i, list, columnNum) {
     handleImageEvent(i, list, columnNum).then(() => {
-      renderImage(++i, list, columnNum);
+      renderImages(++i, list, columnNum);
     });
   }
 
-  function handleImageEvent(i, list, columnNum) {
+  function handleImageEvent(index, list, columnNum) {
     return new Promise((resolve, reject) => {
-      if (i < list.length) {
+      if (index < list.length) {
         let img = document.createElement('img');
-        img.src = list[i].url;
+        img.src = list[index].url;
         img.alt = '404'; // 空不会显示error
+        img.style.display = 'block';
+        img.style.width = '100%';
+        img.style.cursor = 'pointer';
+        img.onmouseover = function() {
+          img.style.transform = 'scale(1.2)';
+          img.style.transition = 'all .3s ease';
+        };
+        img.onmouseout = function() {
+          img.style.transform = 'none';
+          img.style.transition = 'none';
+        };
         img.onload = function() {
           let arr = [];
           for (let i = 0; i < columnNum; i++) {
+            if (!document.getElementById('list').children[i]) console.log(document.getElementById('list'), i, columnNum);
             let height = document.getElementById('list').children[i].clientHeight;
             arr.push({ height: height, index: i });
           }
