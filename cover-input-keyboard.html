@@ -4,18 +4,24 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-  <title>input 弹出键盘</title>
+  <title>custom input keyboard</title>
   <style type="text/css">
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
   .comment-button {
+    position: fixed;
     background: #fff;
     border: 1px solid #eee;
+    left: 10px;
+    right: 10px;
     bottom: 0;
     font-size: 14px;
     height: 30px;
     line-height: 30px;
-    padding-left: 10px;
-    position: fixed;
-    width: 100%;
+    width: calc(100% - 20px);
     cursor: text;
   }
 
@@ -32,25 +38,25 @@
   }
 
   .comment-box {
+    position: fixed;
     background: #fff;
+    left: 0;
+    right: 0;
     bottom: 0;
     display: none;
-    left: 0;
     padding: 10px;
-    position: fixed;
     text-align: center;
-    width: 100%;
+    width: calc(100% - 20px);
     z-index: 10013;
   }
 
   .input {
+    position: relative;
     border: 1px solid #eee;
     bottom: 0;
     height: 30px;
     left: 0;
     line-height: 30px;
-    padding-left: 10px;
-    position: relative;
     width: 100%;
   }
   </style>
@@ -113,17 +119,17 @@
   <div class="comment-button" onclick="addComment()">添加评论…</div>
   <div class="cover" onclick="hideComment()"></div>
   <div class="comment-box">
-    <input type="text" autofocus="autofocus" class="input" placeholder="添加评论…" />
-    <img src="https://raw.githubusercontent.com/summervibe/summer-vibe/master/loading.gif" style="width:30px;height: 30px;" />
+    <input type="text" autofocus="autofocus" class="input" placeholder="添加评论…" onblur="handleBlur()" />
+    <img src="https://raw.githubusercontent.com/KizunaSwift/JavaScript/master/loading.gif" style="width:30px;height: 30px;" />
     <br />
-    <img src="https://raw.githubusercontent.com/summervibe/summer-vibe/master/loading.gif" style="width:30px;height: 30px;" />
+    <img src="https://raw.githubusercontent.com/KizunaSwift/JavaScript/master/loading.gif" style="width:30px;height: 30px;" />
     <br />
-    <img src="https://raw.githubusercontent.com/summervibe/summer-vibe/master/loading.gif" style="width:30px;height: 30px;" />
+    <img src="https://raw.githubusercontent.com/KizunaSwift/JavaScript/master/loading.gif" style="width:30px;height: 30px;" />
   </div>
   <script>
   var status = 1;
   document.addEventListener("touchmove", function(e) {
-    if (parseInt(status) === 0) {
+    if (status == 0) {
       e.preventDefault();
       e.stopPropagation();
     }
@@ -139,7 +145,7 @@
     document.getElementsByClassName('input')[0].focus();
   }
 
-   function hideComment() {
+  function hideComment() {
     status = 1;
     document.body.style.overflow = 'visible';
     document.getElementsByClassName('comment-button')[0].style.display = 'block';
@@ -149,27 +155,9 @@
     document.getElementsByClassName('input')[0].blur();
   }
 
-  // $(function() {
-  //   $('.comment-button').click(function() {
-  //     status = 0;
-  //     $('body').css('overflow', 'hidden');
-  //     $('.comment-button').hide();
-  //     $('.cover').show();
-  //     $('.comment-box').show();
-  //     $('.input').focus();
-  //     setInterval(function() {
-  //       $('.input')[0].scrollIntoView(false);
-  //     }, 200);
-  //   });
-
-  //   $('.cover').click(function() {
-  //     status = 1;
-  //     $('html, body').css('overflow', 'visible');
-  //     $('.comment-button').show();
-  //     $('.cover').hide();
-  //     $('.comment-box').hide();
-  //   });
-  // });
+  function handleBlur() {
+    console.log('blur...');
+  }
   </script>
 </body>
 
