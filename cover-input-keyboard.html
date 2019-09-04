@@ -1,109 +1,109 @@
 <!DOCTYPE html>
 
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
-  <title>input弹出键盘</title>
-  <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-  <script src="https://cdn.bootcss.com/jquery/3.2.0/jquery.min.js"></script>
-  <style type="text/css">
-  .gotocomment {
-    background: #fff;
-    border: 1px solid #eee;
-    bottom: 0;
-    font-size: 14px;
-    height: 30px;
-    line-height: 30px;
-    padding-left: 10px;
-    position: fixed;
-    width: 100%;
-  }
-
-  .over {
-    background-color: #000;
-    display: none;
-    height: 100%;
-    left: 0;
-    opacity: 0.3;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-  }
-
-  .commentBox {
-    background: #fff;
-    bottom: 0;
-    display: none;
-    left: 0;
-    padding: 10px;
-    position: fixed;
-    text-align: center;
-    width: 100%;
-    z-index: 10013;
-  }
-
-  .keyboard {
-    border: 1px solid #eee;
-    bottom: 0;
-    height: 30px;
-    left: 0;
-    line-height: 30px;
-    padding-left: 10px;
-    position: relative;
-    width: 100%;
-  }
-  </style>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <title>input 弹出键盘</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="https://cdn.bootcss.com/jquery/3.2.0/jquery.min.js"></script>
+    <style type="text/css">
+    .gotocomment {
+        background: #fff;
+        border: 1px solid #eee;
+        bottom: 0;
+        font-size: 14px;
+        height: 30px;
+        line-height: 30px;
+        padding-left: 10px;
+        position: fixed;
+        width: 100%;
+    }
+    
+    .over {
+        background-color: #000;
+        display: none;
+        height: 100%;
+        left: 0;
+        opacity: 0.3;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+    }
+    
+    .commentBox {
+        background: #fff;
+        bottom: 0;
+        display: none;
+        left: 0;
+        padding: 10px;
+        position: fixed;
+        text-align: center;
+        width: 100%;
+        z-index: 10013;
+    }
+    
+    .keyboard {
+        border: 1px solid #eee;
+        bottom: 0;
+        height: 30px;
+        left: 0;
+        line-height: 30px;
+        padding-left: 10px;
+        position: relative;
+        width: 100%;
+    }
+    </style>
 </head>
 
 <body>
-  <div class="text-center"></div>
-  <div class="gotocomment">添加评论…</div>
-  <div class="over"></div>
-  <div class="commentBox">
-    <input type="text" autofocus="autofocus" class="keyboard" placeholder="添加评论…" />
-    <img src="https://raw.githubusercontent.com/summervibe/summer-vibe/master/loading.gif" style="width:30px;height: 30px;" />
-    <br />
-    <img src="https://raw.githubusercontent.com/summervibe/summer-vibe/master/loading.gif" style="width:30px;height: 30px;" />
-    <br />
-    <img src="https://raw.githubusercontent.com/summervibe/summer-vibe/master/loading.gif" style="width:30px;height: 30px;" />
-  </div>
-  <script>
-  var status = 1;
-  document.addEventListener("touchmove", function(e) {
-    if (parseInt(status) === 0) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
-  }, false);
+    <div class="text-center"></div>
+    <div class="gotocomment">添加评论…</div>
+    <div class="over"></div>
+    <div class="commentBox">
+        <input type="text" autofocus="autofocus" class="keyboard" placeholder="添加评论…" />
+        <img src="https://raw.githubusercontent.com/summervibe/summer-vibe/master/loading.gif" style="width:30px;height: 30px;" />
+        <br />
+        <img src="https://raw.githubusercontent.com/summervibe/summer-vibe/master/loading.gif" style="width:30px;height: 30px;" />
+        <br />
+        <img src="https://raw.githubusercontent.com/summervibe/summer-vibe/master/loading.gif" style="width:30px;height: 30px;" />
+    </div>
+    <script>
+    var status = 1;
+    document.addEventListener("touchmove", function(e) {
+        if (parseInt(status) === 0) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+    }, false);
 
-  $(function() {
-    for (var i = 0; i < 50; i++) {
-      $('.text-center').append("这里是内容<br/>");
-    }
+    $(function() {
+        for (var i = 0; i < 50; i++) {
+            $('.text-center').append("百度一下，你就知道!<br/>");
+        }
 
-    $('.gotocomment').click(function() {
-      status = 0;
-      $('html, body').css('overflow', 'hidden');
-      $('.gotocomment').hide();
-      $('.over').show();
-      $('.commentBox').show();
-      $('.keyboard').focus();
-      setInterval(function() {
-        $('.keyboard')[0].scrollIntoView(false);
-      }, 200);
+        $('.gotocomment').click(function() {
+            status = 0;
+            $('html, body').css('overflow', 'hidden');
+            $('.gotocomment').hide();
+            $('.over').show();
+            $('.commentBox').show();
+            $('.keyboard').focus();
+            setInterval(function() {
+                $('.keyboard')[0].scrollIntoView(false);
+            }, 200);
+        });
+
+        $('.over').click(function() {
+            status = 1;
+            $('html, body').css('overflow', 'visible');
+            $('.gotocomment').show();
+            $('.over').hide();
+            $('.commentBox').hide();
+        });
     });
-
-    $('.over').click(function() {
-      status = 1;
-      $('html, body').css('overflow', 'visible');
-      $('.gotocomment').show();
-      $('.over').hide();
-      $('.commentBox').hide();
-    });
-  });
-  </script>
+    </script>
 </body>
 
 </html>
