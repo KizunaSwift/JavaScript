@@ -5,10 +5,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <title>input 弹出键盘</title>
-  <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-  <script src="./jquery.min.js"></script>
   <style type="text/css">
-  .gotocomment {
+  .comment-button {
     background: #fff;
     border: 1px solid #eee;
     bottom: 0;
@@ -18,9 +16,10 @@
     padding-left: 10px;
     position: fixed;
     width: 100%;
+    cursor: text;
   }
 
-  .over {
+  .cover {
     background-color: #000;
     display: none;
     height: 100%;
@@ -32,7 +31,7 @@
     z-index: 1000;
   }
 
-  .commentBox {
+  .comment-box {
     background: #fff;
     bottom: 0;
     display: none;
@@ -44,7 +43,7 @@
     z-index: 10013;
   }
 
-  .keyboard {
+  .input {
     border: 1px solid #eee;
     bottom: 0;
     height: 30px;
@@ -58,11 +57,63 @@
 </head>
 
 <body>
-  <div class="text-center"></div>
-  <div class="gotocomment">添加评论…</div>
-  <div class="over"></div>
-  <div class="commentBox">
-    <input type="text" autofocus="autofocus" class="keyboard" placeholder="添加评论…" />
+  <div class="content">
+    <pre>
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+    这里是内容
+  </pre>
+  </div>
+  <div class="comment-button" onclick="addComment()">添加评论…</div>
+  <div class="cover" onclick="hideComment()"></div>
+  <div class="comment-box">
+    <input type="text" autofocus="autofocus" class="input" placeholder="添加评论…" />
     <img src="https://raw.githubusercontent.com/summervibe/summer-vibe/master/loading.gif" style="width:30px;height: 30px;" />
     <br />
     <img src="https://raw.githubusercontent.com/summervibe/summer-vibe/master/loading.gif" style="width:30px;height: 30px;" />
@@ -78,31 +129,47 @@
     }
   }, false);
 
-  $(function() {
-    for (var i = 0; i < 50; i++) {
-      $('.text-center').append("这里是内容<br/>");
-    }
+  function addComment() {
+    status = 0;
+    document.body.style.overflow = 'hidden';
+    document.getElementsByClassName('comment-button')[0].style.display = 'none';
 
-    $('.gotocomment').click(function() {
-      status = 0;
-      $('html, body').css('overflow', 'hidden');
-      $('.gotocomment').hide();
-      $('.over').show();
-      $('.commentBox').show();
-      $('.keyboard').focus();
-      setInterval(function() {
-        $('.keyboard')[0].scrollIntoView(false);
-      }, 200);
-    });
+    document.getElementsByClassName('cover')[0].style.display = 'block';
+    document.getElementsByClassName('comment-box')[0].style.display = 'block';
+    document.getElementsByClassName('input')[0].focus();
+  }
 
-    $('.over').click(function() {
-      status = 1;
-      $('html, body').css('overflow', 'visible');
-      $('.gotocomment').show();
-      $('.over').hide();
-      $('.commentBox').hide();
-    });
-  });
+   function hideComment() {
+    status = 1;
+    document.body.style.overflow = 'visible';
+    document.getElementsByClassName('comment-button')[0].style.display = 'block';
+
+    document.getElementsByClassName('cover')[0].style.display = 'none';
+    document.getElementsByClassName('comment-box')[0].style.display = 'none';
+    document.getElementsByClassName('input')[0].blur();
+  }
+
+  // $(function() {
+  //   $('.comment-button').click(function() {
+  //     status = 0;
+  //     $('body').css('overflow', 'hidden');
+  //     $('.comment-button').hide();
+  //     $('.cover').show();
+  //     $('.comment-box').show();
+  //     $('.input').focus();
+  //     setInterval(function() {
+  //       $('.input')[0].scrollIntoView(false);
+  //     }, 200);
+  //   });
+
+  //   $('.cover').click(function() {
+  //     status = 1;
+  //     $('html, body').css('overflow', 'visible');
+  //     $('.comment-button').show();
+  //     $('.cover').hide();
+  //     $('.comment-box').hide();
+  //   });
+  // });
   </script>
 </body>
 
