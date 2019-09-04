@@ -2,31 +2,31 @@
 <html>
 
 <head>
-    <title>页面自动滚动</title>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="Author" content="summer vibe" />
-    <meta name="Keywords" content="页面自动滚动" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+  <meta name="author" content="KizunaSwift" />
+  <meta name="keywords" content="页面自动滚动" />
+  <title>页面自动滚动</title>
 </head>
 
 <body>
-    <script type="text/javascript">
-	var locate = 0;
-	var scrollup = false;
-    var timer = setInterval("scrollDown()", 30); // 设置滚动速度，数字越大，滚动越慢。
-    function scrollDown() {
-        if (document.body.scrollTop + window.screen.availHeight < document.body.scrollHeight && !scrollup) {
-            locate++;
-			scroll(0, locate);
-        } else {
-			locate--;
-			scroll(0, locate);
-			scrollup = locate === 0 ? false : true;
-        }
+  <script type="text/javascript">
+  var locate = 0;
+  var scrollup = false;
+  var timer = setInterval("scrollDown()", 30); // 设置滚动速度，数字越大，滚动越慢。
+  function scrollDown() {
+    if (document.body.scrollTop + window.screen.availHeight < document.body.scrollHeight && !scrollup) {
+      locate++;
+      scroll(0, locate);
+    } else {
+      locate--;
+      scroll(0, locate);
+      scrollup = locate === 0 ? false : true;
     }
-    </script>
-    <pre>
+  }
+  </script>
+  <pre>
 她要飞了...
 我静静的站着，看着...
 飞吧

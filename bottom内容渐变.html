@@ -3,6 +3,8 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
   <title>linear-gradient-pointer-events</title>
   <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
   <style>
@@ -59,7 +61,7 @@
   </div>
   <script type="text/javascript">
   $("p:first").dblclick(function() {
-  	let txt = window.getSelection ? window.getSelection() : document.selection.createRange().text;
+    let txt = window.getSelection ? window.getSelection() : document.selection.createRange().text;
     alert(txt.toString());
   });
   </script>
